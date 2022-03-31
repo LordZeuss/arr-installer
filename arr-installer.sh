@@ -22,17 +22,19 @@ updatesys () { yes | sudo apt-get update && sudo apt-get upgrade; }
 ######################################################################
 
 echo "This script assumes you have your docker files located in your /home/$USER/raspi-docker folder."
-echo "If your folder is located elsewhere, you will need to change the location of your docker-compose files in this script."
-echo "This script follows my other guide of insatlling Docker and Mullvad VPN. Visit https://github.com/LordZeuss/raspi-docker for more info."
 echo " "
-echo "This script picks the US/Eastern timezone automatically. You might need to change it."
+echo "If your folder is located elsewhere, you will need to change the location of your docker-compose files in this script."
+echo " "
+echo "This script follows my other guide of insatlling Docker and Mullvad VPN. Visit https://github.com/LordZeuss/raspi-docker for more info."
 echo " "
 ######################################################################
 
 #Update the system
 
 echo "Would you like to update your system (Recommended)? (y/n/e)"
+echo " "
 echo "y=yes | n=no | e=exit-program"
+echo " "
 
 read yesorno
 
