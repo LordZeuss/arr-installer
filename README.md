@@ -1,19 +1,6 @@
 # arr-installer
 This script installs several "Arr" programs. Such as sonarr, radarr, etc.
 
-## Table of Contents
-* [General Info](#general-info)
-* [Programs Included](#programs-included)
-* [Pre-Requirements](#pre-requirements)
-* [Installation](#installation)
-* [Execution](#execution)
-* [Modification](#modification)
-* [Conclusion](#conclusion)
-* [Donations](#donations)
-
-# Disclaimer
-I am not responsible for how you use these programs, I just wanted to write a script to see if it was possible to do so. Do not download any illegal content.
-
 # General Info
 This project is to assist in setting up programs such as sonarr, radarr, and other "arr" type programs.
 Its a basic bash script that will isntall these into the docker-compose.yml file for you.
@@ -26,6 +13,19 @@ To install Docker and Mullvad VPN, check out my other repo, which this one coord
 ```
 https://github.com/LordZeuss/raspi-docker
 ```
+
+## Table of Contents
+* [General Info](#general-info)
+* [Programs Included](#programs-included)
+* [Pre-Requirements](#pre-requirements)
+* [Installation](#installation)
+* [Execution](#execution)
+* [Modification](#modification)
+* [Conclusion](#conclusion)
+* [Donations](#donations)
+
+# Disclaimer
+I am not responsible for how you use these programs, I just wanted to write a script to see if it was possible to do so. Do not download any illegal content.
 
 # Programs Included
 * Sonarr  -for TV shows
