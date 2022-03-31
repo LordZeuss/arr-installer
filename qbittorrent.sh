@@ -10,7 +10,7 @@ ___  ____ _  _ ____    _ _  _ ____ ___ ____ _    _    ____ ____
 
 #This is a script to help install essentials for docker. 
 
-#This script will install portainer, sonarr, radarr, jackett, and qbittorrent.
+#This script will install qbittorrent.
 
 ######################################################################
 
@@ -23,7 +23,7 @@ updatesys () { yes | sudo apt-get update && sudo apt-get upgrade; }
 
 echo "This script assumes you have your docker files located in your /home/$USER/raspi-docker folder."
 echo "If your folder is located elsewhere, you will need to change the location of your docker-compose files in this script."
-echo "This script follows my other guide of insatlling Docker and Mullvad VPN. Visit https://github.com/LordZeuss/raspi-docker for more info.
+echo "This script follows my other guide of insatlling Docker and Mullvad VPN. Visit https://github.com/LordZeuss/raspi-docker for more info."
 echo " "
 echo "NOTE: With this qbittorrent script, it will default to downloading in the /home/$USER/Downloads folder."
 echo "NOTE: The config files will default to /home/$USER/raspi-docker/qbittorrent unless otherwise changed in the script."
@@ -79,7 +79,7 @@ fi
 
 #Install Qbittorrent
 
-echo "Would you like to check if Docker is working(Recommended)? (y/n)"
+echo "Would you like install qbittorrent? (y/n)"
 
 read yesorno
 
@@ -97,7 +97,8 @@ if [ "$yesorno" = y ]; then
       - TZ=US/Eastern
     volumes:
       - /home/$USER/raspi-docker/qbittorrent:/config
-    restart: unless-stopped" >> home/$USER/raspi-docker/docker-compose.yml 	#replace /home/$USER/raspi-docker/docker-compose.yml with the location of your docker-compose.yml file
+    restart: unless-stopped" >> /home/$USER/raspi-docker/docker-compose.yml 	#replace /home/$USER/raspi-docker/docker-compose.yml with the location of your docker-compose.yml file
+	echo " " >> /home/$USER/raspi-docker/docker-compose.yml		#replace /home/$USER/raspi-docker/docker-compose.yml with the location of your docker-compose.yml file
 	echo "Successfully Added"
 elif [ "$yesorno" = n ]; then
 	echo "Skipping..."
