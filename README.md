@@ -21,6 +21,7 @@ https://github.com/LordZeuss/raspi-docker
 * [Installation](#installation)
 * [Execution](#execution)
 * [Modification](#modification)
+* [Running the Containers](#running-the-containers)
 * [Conclusion](#conclusion)
 * [Donations](#donations)
 
@@ -121,6 +122,26 @@ What is $USER?
 Example: Your username is Bob. /home/Bob/docker is the same as /home/$USER/docker. $USER just represents the username.
 
 You can usually change these settings inside of portainer as well. There is also many videos about docker-compose if you need to edit more or if you need more help.
+
+# Running the Containers
+How do you access portainer to see your containers?
+Run the command 
+```
+$ hostname -I
+```
+This will show you your system IP (local IP)
+
+Navigate to the folder where your docker-compose.yml file is located
+* Default is /home/$USER/raspi-docker
+
+To install the containers you have added to Docker run the command
+```
+$ docker-compose up -d
+```
+For whatever reason, if you want to turn off/recreate the docker containers run the command
+```
+$ docker-compose down
+```
 
 # Conclusion
 I hope you find this script useful! Once again, this script is designed to be ran after running my docker setup that is in my other repo. You can modify the script to your needs and run it, but using my docker setup may just be less of a hassle. I hope this works for you!
