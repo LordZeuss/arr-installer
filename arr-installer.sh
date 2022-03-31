@@ -65,7 +65,6 @@ if [ "$yesorno" = y ]; then
 	docker-compose -v
 	echo " "
 	echo "If no errors occured, Docker should be good to go."
-	echo "If an error occured, try running the docker-troubleshoot-fix.sh script."
 	echo " "
 elif [ "$yesorno" = n ]; then
 	echo "Skipping..."
