@@ -131,6 +131,12 @@ $ hostname -I
 ```
 This will show you your system IP (local IP)
 
+You can then open a web-browser, type in the IP with port 9000 and hit enter
+* Example: 192.168.1.10:9000
+```
+IP:9000 click enter
+```
+
 Navigate to the folder where your docker-compose.yml file is located
 * Default is /home/$USER/raspi-docker
 
