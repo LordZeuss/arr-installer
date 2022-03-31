@@ -7,9 +7,7 @@ ___  ____ _  _ ____    _ _  _ ____ ___ ____ _    _    ____ ____
  /__ |___ |__| ___]    | | \| ___]  |  |  | |___ |___ |___ |  \ 
                                                                 
 "
-
-#This is a script to help install essentials for docker. 
-
+ 
 #This script will install qbittorrent.
 
 ######################################################################
@@ -35,7 +33,8 @@ echo "This Script assumes your timezone is US/Eastern. You may need to modify."
 #Update the system
 
 echo "Would you like to update your system (Recommended)? (y/n/e)"
-echo "y=yes | n=no | e=exit-program'
+echo " "
+echo "y=yes | n=no | e=exit-program"
 read yesorno
 
 if [ "$yesorno" = y ]; then
