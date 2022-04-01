@@ -149,7 +149,7 @@ fi
 
 #Install Radarr
 
-echo "Would you like to check if Docker is working(Recommended)? (y/n/e)"
+echo "Would you like to install Radarr? (y/n/e)"
 
 read yesorno
 
