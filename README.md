@@ -46,29 +46,29 @@ To install and run the scripts, first you must install git and clone the repo.
 NOTE: you only need to install git if you haven't before, but since you have docker installed, you can probably skip that step.
 
 ```
-$ sudo apt-get install git
-$ git clone https://github.com/LordZeuss/arr-installer
+sudo apt-get install git
+git clone https://github.com/LordZeuss/arr-installer
 ```
 Then, navigate to the folder where the scripts are downloaded.
 
 ```
-$ cd arr-installer
+cd arr-installer
 ```
 
 # Execution
 To run the scripts, run these commands:
 
 ```
-$ ./arr-installer.sh
-$ ./qbittorrent.sh
+./arr-installer.sh
+./qbittorrent.sh
 ```
 
 # Modification
 If you need to edit the script, you can do so by running the commands
 
 ```
-$ nano arr-installer.sh
-$ nano qbittorrent.sh
+nano arr-installer.sh
+nano qbittorrent.sh
 ```
 
 Things you may want to change:
@@ -93,11 +93,11 @@ Under where it lists the image (will be the last line of the docker-compose file
 Example: 
 ```
 image: linuxserver/sonarr" >> /home/$USER/raspi-docker/docker-compose.yml
- ```
+```
  To change the location, you'll want to change the second part.
  Changed to a diffent path:
- ```
- image: linuxserver/sonarr" >> /home/$USER/docker/docker-compose.yml
+```
+image: linuxserver/sonarr" >> /home/$USER/docker/docker-compose.yml
 ```
 
 What is $USER? 
@@ -111,7 +111,7 @@ You can usually change these settings inside of portainer as well. There is also
 How do you access portainer to see your containers?
 Run the command 
 ```
-$ hostname -I
+hostname -I
 ```
 This will show you your system IP (local IP)
 
@@ -126,11 +126,11 @@ Navigate to the folder where your docker-compose.yml file is located
 
 To install the containers you have added to Docker run the command
 ```
-$ docker-compose up -d
+docker-compose up -d
 ```
 For whatever reason, if you want to turn off/recreate the docker containers run the command
 ```
-$ docker-compose down
+docker-compose down
 ```
 
 # Conclusion
