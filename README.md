@@ -23,6 +23,7 @@ https://github.com/LordZeuss/raspi-docker
 * [Modification](#modification)
 * [Running the Containers](#running-the-containers)
 * [Conclusion](#conclusion)
+* [Updates](#updates)
 * [Donations](#donations)
 
 # Disclaimer
@@ -156,6 +157,9 @@ Link to my Docker/Mullvad Install Script Repo:
 ```
 https://github.com/LordZeuss/raspi-docker
 ```
+
+# Updates
+I plan on adding a scipt that will have no paths, and will require you to manully edit the paths to your liking. This may make it easier than changing the ones I have setup by default, because I set up the script to go along with my docker install repo.
   
 # Donations
 Feel free to use these scripts as much as you want, edit it as much as you need to, fork them into your own projects, have fun with it! That's the purpose for open source!
