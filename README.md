@@ -42,7 +42,7 @@ I recommend you use my other repo to install docker and docker-compose, since th
 # Installation
 To install and run the scripts, first you must install git and clone the repo.
 
-NOTE: you only need to install git if you haven't before, but since you have docker installed, you can probably skip this step.
+NOTE: you only need to install git if you haven't before, but since you have docker installed, you can probably skip that step.
 
 ```
 $ sudo apt-get install git
