@@ -41,8 +41,10 @@ read yesorno
 if [ "$yesorno" = y ]; then
 	updatesys
 	echo "Update Successful."
+	echo " "
 elif [ "$yesorno" = n ]; then
 	echo "Skipping..."
+	echo " "
 elif [ "$yesorno" = e ]; then
 	echo "Goodbye!"
 	exit 1
@@ -65,6 +67,7 @@ if [ "$yesorno" = y ]; then
 	docker-compose -v
 	echo " "
 	echo "If no errors occured, Docker should be good to go."
+	echo "Docker-Compose version not found is not an error"
 	echo " "
 elif [ "$yesorno" = n ]; then
 	echo "Skipping..."
