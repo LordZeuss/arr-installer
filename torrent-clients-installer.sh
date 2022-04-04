@@ -44,6 +44,7 @@ elif [ "$yesorno" = n ]; then
 	echo "Skipping..."
 elif [ "$yesorno" = e ]; then
 	echo "Goodbye!"
+	exit 1
 else
 	echo "Not a valid answer. Exiting..."
 	exit 1
@@ -69,6 +70,7 @@ elif [ "$yesorno" = n ]; then
 	echo "Skipping..."
 elif [ "$yesorno" = e ]; then
 	echo "Goodbye!"
+	exit 1
 else
 	echo "Not a valid answer. Exiting..."
 	exit 1
@@ -76,9 +78,9 @@ fi
 
 ######################################################################
 
-#Install Qbittorrent
+#Install qBittorrent
 
-echo "Would you like install qbittorrent? (y/n)"
+echo "Would you like install qBittorrent? (y/n)"
 
 read yesorno
 
@@ -103,12 +105,100 @@ elif [ "$yesorno" = n ]; then
 	echo "Skipping..."
 elif [ "$yesorno" = e ]; then
 	echo "Goodbye!"
+	exit 1
+else
+	echo "Not a valid answer. Exiting..."
+	exit 1
+fi
+
+
+#Install Transmission
+
+echo "Would you like install Transmission? (y/n/e)"
+
+read yesorno
+
+if [ "$yesorno" = y ]; then
+	mkdir /home/$USER/raspi-docker/transmission
+	mkdir /home/$USER/raspi-docker/transmission/config
+	mkdir /home/$USER/raspi-docker/transmission/downloads
+	echo "transmission:
+    image: linuxserver/transmission
+    container_name: transmission
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=UTC
+      - TRANSMISSION_WEB_HOME=/combustion-release/ #optional
+#      - USER=username #optional
+#      - PASS=password #optional
+    volumes:
+      - ./home/$USER/raspi-docker/transmission/config:/config
+      - ./home/$USER/raspi-docker/transmission/downloads:/downloads
+      - ./downloads/TransmissionWatchFolder:/watch
+    ports:
+      - 9091:9091
+      - 51413:51413
+      - 51413:51413/udp
+    restart: unless-stopped" >> /home/$USER/raspi-docker/docker-compose.yml 	#replace /home/$USER/raspi-docker/docker-compose.yml with the location of your docker-compose.yml file
+	echo " " >> /home/$USER/raspi-docker/docker-compose.yml		#replace /home/$USER/raspi-docker/docker-compose.yml with the location of your docker-compose.yml file
+	echo "Successfully Added"
+elif [ "$yesorno" = n ]; then
+	echo "Skipping..."
+elif [ "$yesorno" = e ]; then
+	echo "Goodbye!"
+	exit 1
 else
 	echo "Not a valid answer. Exiting..."
 	exit 1
 fi
 
 ######################################################################
+
+#Install Deluge
+
+echo "Would you like install Deluge? (y/n/e)"
+
+read yesorno
+
+if [ "$yesorno" = y ]; then
+	mkdir /home/$USER/raspi-docker/deluge
+	mkdir /home/$USER/raspi-docker/deluge/downloads
+	mkdir /home/$USER/raspi-docker/deluge/config
+	echo "deluge:
+    image: linuxserver/deluge
+    container_name: deluge
+    # network_mode: host
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=UTC
+      - UMASK=022 #optional
+      - DELUGE_LOGLEVEL=error #optional
+    volumes:
+      - ./home/$USER/raspi-docker/deluge/config:/config
+      - ./home/$USER/raspi-config/deluge:/downloads
+    ports:
+      - 8112:8112
+      - 58846:58846
+      - 58946:58946" >> /home/$USER/raspi-docker/docker-compose.yml 	#replace /home/$USER/raspi-docker/docker-compose.yml with the location of your docker-compose.yml file
+	echo " " >> /home/$USER/raspi-docker/docker-compose.yml		#replace /home/$USER/raspi-docker/docker-compose.yml with the location of your docker-compose.yml file
+	echo "Successfully Added"
+elif [ "$yesorno" = n ]; then
+	echo "Skipping..."
+elif [ "$yesorno" = e ]; then
+	echo "Goodbye!"
+	exit 1
+else
+	echo "Not a valid answer. Exiting..."
+	exit 1
+fi
+
+
+######################################################################
+
+echo " "
+echo " "
 echo " "
 echo "Installer Complete."
 echo "To access Portainer, go to the IP of this device in a web-browser, port 9000. Ex: 192.168.1.18:9000"
