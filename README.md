@@ -30,11 +30,19 @@ https://github.com/LordZeuss/raspi-docker
 I am not responsible for how you use these programs, I just wanted to write a script to see if it was possible to do so. Do not download any illegal content.
 
 # Programs Included
-* Sonarr  -for TV shows
-* Radarr  -for Movies
-* Jackett -indexing for Sonarr/Radarr
-* Portainer -interface to manage containers (This is an essential)
+* Sonarr      -for TV shows
+* Radarr      -for Movies
+* Jackett     -indexing for Sonarr/Radarr
+* Readarr     -Like sonarr/radarr but for books
+* Bazarr      -Another Arr program that downloads subtitles
+* Portainer   -interface to manage containers (This is an essential)
 * Qbittorrent -torrent program
+## Extra Programs Included
+* AdGuard     -DNS Adblocker, similar to pi-hole
+* Readarr     -Like sonarr/radarr but for books
+* Bazarr      -Another Arr program that downloads subtitles
+* Heimdall    -A way to view the status on your containers. Isn't a portainer replacement.
+
 
 # Pre-Requirements
 You need to have docker and docker-compose installed. 
