@@ -30,7 +30,7 @@ echo " "
 ######################################################################
 
 #Update the system
-
+echo " "
 echo "Would you like to update your system (Recommended)? (y/n/e)"
 echo " "
 echo "y=yes | n=no | e=exit-program"
