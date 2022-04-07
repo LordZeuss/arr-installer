@@ -216,6 +216,263 @@ else
 	exit 1
 fi
 
+#############################################################################################
+
+#Install AdGuard
+
+echo "Would you like to install AdGuard (DNS Adblocker)? (y/n/e)"
+
+read yesorno
+
+if [ "$yesorno" = y ]; then
+	mkdir adguard
+	echo "version: "2"
+services:
+  adguardhome:
+    image: adguard/adguardhome
+    container_name: adguardhome
+    ports:
+      - 53:53/tcp
+      - 53:53/udp
+      - 784:784/udp
+      - 853:853/tcp
+      - 3000:3000/tcp
+      - 80:80/tcp
+      - 443:443/tcp
+    volumes:
+      - ./workdir:/opt/adguardhome/work
+      - ./confdir:/opt/adguardhome/conf
+    restart: unless-stopped" >> /home/$USER/raspi-docker/docker-compose.yml		#replace /home/$USER/raspi-docker/docker-compose.yml with the location of your docker-compose.yml file
+echo " " >>/home/$USER/raspi-docker/docker-compose.yml #replace this location with the location docker-compose.yml if needed. 
+echo "Successfully Added"
+echo " "
+echo "Add - 67:67/udp -p 68:68/tcp -p 68:68/udp to use AdGuard as DHCP Server."
+echo "Find on port 3000. IP:3000"
+echo " "
+elif [ "$yesorno" = n ]; then
+	echo "Skipping..."
+elif [ "$yesorno" = e ]; then
+	echo "Goodbye!"
+	exit 1
+else
+	echo "Not a valid answer. Exiting..."
+	exit 1
+fi
+
+
+
+#Install Plex 
+
+echo "Would you like to install Plex Media Server? (y/n/e)"
+echo "EDIT THIS BEFORE ADDING"
+echo " "
+echo "You need to get your claim token. Visit https://www.plex.tv/claim/ to get your claim."
+echo "Add your claim in the script. Should look like -PLEX_CLAIM=claim-t33iotdCjhnBTwD_14PU just obviously replace after claim- with your own claim."
+echo " "
+read yesorno
+
+if [ "$yesorno" = y ]; then
+	echo "version: ‘3.7’
+    services:
+
+      plex:
+        image: plexinc/pms-docker
+        restart: unless-stopped
+        container_name: plexms
+        ports:
+          – “32400:32400/tcp”
+          – “3005:3005/tcp”
+          – “8324:8324/tcp”
+          – “32469:32469/tcp”
+          – “1900:1900/udp”
+          – “32410:32410/udp”
+          – “32412:32412/udp”
+          – “32413:32413/udp”
+          – “32414:32414/udp”
+
+        environment:
+          – PUID=${PUID}
+          – PGID=${PGID}
+          – TZ=US/Eastern
+          – PLEX_CLAIM=claim-<your-string>
+          – HOSTNAME=”PlexServer”
+
+        volumes:
+          – ${USERDIR}/docker/plexms/config:/config
+          – ${USERDIR}/docker/plexms/transcodes:/transcode
+          – ${USERDIR}/docker/plexms/media:/media" >> /home/$USER/raspi-docker/docker-compose.yml		#replace /home/$USER/raspi-docker/docker-compose.yml with the location of your docker-compose.yml file
+echo " " >>/home/$USER/raspi-docker/docker-compose.yml #replace this location with the location docker-compose.yml if needed. 
+echo "Successfully Added"
+echo " "
+elif [ "$yesorno" = n ]; then
+	echo "Skipping..."
+elif [ "$yesorno" = e ]; then
+	echo "Goodbye!"
+	exit 1
+else
+	echo "Not a valid answer. Exiting..."
+	exit 1
+fi
+
+
+
+#Readarr
+
+echo "Would you like to install Readarr? (y/n/e)"
+
+read yesorno
+
+if [ "$yesorno" = y ]; then
+	mkdir readarr
+	echo "version: "2.1"
+services:
+  readarr:
+    image: lscr.io/linuxserver/readarr:develop
+    container_name: readarr
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=US/Eastern
+    volumes:
+      - /home/$USER/raspi-docker/readarr:/config
+      - /path/to/books:/books #optional
+      - /path/to/downloadclient-downloads:/downloads #optional
+    ports:
+      - 8787:8787
+    restart: unless-stopped" >> /home/$USER/raspi-docker/docker-compose.yml		#replace /home/$USER/raspi-docker/docker-compose.yml with the location of your docker-compose.yml file
+echo " " >>/home/$USER/raspi-docker/docker-compose.yml #replace this location with the location docker-compose.yml if needed. 
+echo "Successfully Added"
+echo " "
+echo "Don't forget to add the path to your books and or download client!
+echo " "
+elif [ "$yesorno" = n ]; then
+	echo "Skipping..."
+elif [ "$yesorno" = e ]; then
+	echo "Goodbye!"
+	exit 1
+else
+	echo "Not a valid answer. Exiting..."
+	exit 1
+fi
+
+
+
+#bazarr
+
+echo "Would you like to install Bazarr (Subtitles)? (y/n/e)"
+
+read yesorno
+
+if [ "$yesorno" = y ]; then
+	mkdir bazarr
+	echo "version: "2.1"
+services:
+  bazarr:
+    image: lscr.io/linuxserver/bazarr
+    container_name: bazarr
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=US/Eastern
+    volumes:
+      - /home/$USER/raspi-docker/bazarr:/config
+      - /path/to/movies:/movies #optional
+      - /path/to/tv:/tv #optional
+    ports:
+      - 6767:6767
+    restart: unless-stopped" >> /home/$USER/raspi-docker/docker-compose.yml		#replace /home/$USER/raspi-docker/docker-compose.yml with the location of your docker-compose.yml file
+echo " " >>/home/$USER/raspi-docker/docker-compose.yml #replace this location with the location docker-compose.yml if needed. 
+echo "Successfully Added"
+echo " "
+echo "Don't forget to add the path to your movies and tv shows!
+echo " "
+elif [ "$yesorno" = n ]; then
+	echo "Skipping..."
+elif [ "$yesorno" = e ]; then
+	echo "Goodbye!"
+	exit 1
+else
+	echo "Not a valid answer. Exiting..."
+	exit 1
+fi
+
+
+
+#overseerr
+
+echo "Would you like to install Overseerr? (y/n/e)"
+
+read yesorno
+
+if [ "$yesorno" = y ]; then
+	mkdir Overseerr
+	echo "version: '3'
+services:
+  overseerr:
+    image: sctx/overseerr:latest
+    container_name: overseerr
+    environment:
+      - LOG_LEVEL=debug
+      - TZ=US/Eastern
+    ports:
+      - 5055:5055
+    volumes:
+      - /home/$USER/raspi-docker/overseerr:/app/config
+    restart: unless-stopped" >> /home/$USER/raspi-docker/docker-compose.yml		#replace /home/$USER/raspi-docker/docker-compose.yml with the location of your docker-compose.yml file
+echo " " >>/home/$USER/raspi-docker/docker-compose.yml #replace this location with the location docker-compose.yml if needed. 
+echo "Successfully Added"
+echo " "
+elif [ "$yesorno" = n ]; then
+	echo "Skipping..."
+elif [ "$yesorno" = e ]; then
+	echo "Goodbye!"
+	exit 1
+else
+	echo "Not a valid answer. Exiting..."
+	exit 1
+fi
+
+
+#heimdall
+
+echo "Would you like to install Heimdall? (y/n/e)"
+
+read yesorno
+
+if [ "$yesorno" = y ]; then
+	mkdir heimdall
+	echo "version: "2.1"
+services:
+  heimdall:
+    image: lscr.io/linuxserver/heimdall
+    container_name: heimdall
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=US/Eastern
+    volumes:
+      - /home/$USER/raspi-docker/heimdall:/config
+    ports:
+      - 80:80
+      - 443:443
+    restart: unless-stopped" >> /home/$USER/raspi-docker/docker-compose.yml		#replace /home/$USER/raspi-docker/docker-compose.yml with the location of your docker-compose.yml file
+echo " " >>/home/$USER/raspi-docker/docker-compose.yml #replace this location with the location docker-compose.yml if needed. 
+echo "Successfully Added"
+echo " "
+elif [ "$yesorno" = n ]; then
+	echo "Skipping..."
+elif [ "$yesorno" = e ]; then
+	echo "Goodbye!"
+	exit 1
+else
+	echo "Not a valid answer. Exiting..."
+	exit 1
+fi
+
+
+
+
+
 echo " "
 echo "Installer Complete. Run qbittorrent.sh if you would like to install that as well."
 echo " "
