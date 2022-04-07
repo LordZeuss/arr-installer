@@ -32,6 +32,8 @@ echo "This Script assumes your timezone is US/Eastern. You may need to modify."
 
 #Update the system
 
+echo " "
+echo " "
 echo "Would you like to update your system (Recommended)? (y/n/e)"
 echo " "
 echo "y=yes | n=no | e=exit-program"
@@ -54,7 +56,7 @@ fi
 
 #Test if Docker is working and installed
 
-echo "Would you like to check if Docker is working(Recommended)? (y/n)"
+echo "Would you like to check if Docker is working(Recommended)? (y/n/e)"
 
 read yesorno
 
@@ -80,7 +82,7 @@ fi
 
 #Install qBittorrent
 
-echo "Would you like install qBittorrent? (y/n)"
+echo "Would you like install qBittorrent? (y/n/e)"
 
 read yesorno
 
