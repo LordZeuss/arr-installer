@@ -324,7 +324,7 @@ read yesorno
 
 if [ "$yesorno" = y ]; then
 	mkdir readarr
-	echo "version: "2.1"
+	echo "version: 2.1
 services:
   readarr:
     image: lscr.io/linuxserver/readarr:develop
@@ -343,7 +343,7 @@ services:
 echo " " >>/home/$USER/raspi-docker/docker-compose.yml #replace this location with the location docker-compose.yml if needed. 
 echo "Successfully Added"
 echo " "
-echo "Don't forget to add the path to your books and or download client!
+echo "Don't forget to add the path to your books and or download client!"
 echo " "
 elif [ "$yesorno" = n ]; then
 	echo "Skipping..."
@@ -365,7 +365,7 @@ read yesorno
 
 if [ "$yesorno" = y ]; then
 	mkdir bazarr
-	echo "version: "2.1"
+	echo "version: 2.1
 services:
   bazarr:
     image: lscr.io/linuxserver/bazarr
@@ -384,7 +384,7 @@ services:
 echo " " >>/home/$USER/raspi-docker/docker-compose.yml #replace this location with the location docker-compose.yml if needed. 
 echo "Successfully Added"
 echo " "
-echo "Don't forget to add the path to your movies and tv shows!
+echo "Don't forget to add the path to your movies and tv shows!"
 echo " "
 elif [ "$yesorno" = n ]; then
 	echo "Skipping..."
