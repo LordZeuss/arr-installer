@@ -403,7 +403,39 @@ else
 	exit 1
 fi
 
+#Lidarr
 
+echo "Would you like to install Lidarr (Music)? (y/n/e)"
+
+read yesorno
+
+if [ "$yesorno" = y ]; then
+	mkdir /home/$USER/raspi-docker/lidarr
+	echo "lidarr:
+    image: lscr.io/linuxserver/lidarr
+    container_name: lidarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/London
+    volumes:
+      - /home/$USER/raspi-docker/lidarr/config:/config
+      - /path/to/music:/music #optional
+      - /path/to/downloads:/downloads #optional
+    ports:
+      - 8686:8686
+    restart: unless-stopped" >> /home/$USER/raspi-docker/docker-compose.yml		#replace /home/$USER/raspi-docker/docker-compose.yml with the location of your docker-compose.yml file
+echo " " >>/home/$USER/raspi-docker/docker-compose.yml #replace this location with the location docker-compose.yml if needed.
+echo "Successfully Added"
+elif [ "$yesorno" = n ]; then
+	echo "Skipping..."
+elif [ "$yesorno" = e ]; then
+	echo "Goodbye!"
+	exit 1
+else
+	echo "Not a valid answer. Exiting..."
+	exit 1
+fi
 
 
 
