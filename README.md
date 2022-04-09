@@ -6,7 +6,7 @@ This project is to assist in setting up programs such as sonarr, radarr, and oth
 Its a basic bash script that will isntall these into the docker-compose.yml file for you.
 Feel free to contact me to add more programs to the list!
 
-This project is scripted to install in the directory of my docker setup repo, however you will need to change the location of your docker-compose.yml in the script if you are using a different location.
+**This project is scripted to install in the same directory of my docker setup repo, however you will need to change the location of your docker-compose.yml in the script if you are using a different location.**
 
 To install Docker and Mullvad VPN, check out my other repo, which this one coordinates with.
 
@@ -36,11 +36,14 @@ I am not responsible for how you use these programs, I just wanted to write a sc
 * Readarr     -Like sonarr/radarr but for books
 * Bazarr      -Another Arr program that downloads subtitles
 * Portainer   -interface to manage containers (This is an essential)
-* Qbittorrent -torrent program
+* qBittorrent -Torrent Client
+* Deluge      -Torrent Client
+* Transmission -Torrent Client
 ## Extra Programs Included
 * AdGuard     -DNS Adblocker, similar to pi-hole
 * Readarr     -Like sonarr/radarr but for books
 * Bazarr      -Another Arr program that downloads subtitles
+* Lidarr      -Arr program for music
 * Heimdall    -A way to view the status on your containers. Isn't a portainer replacement.
 
 
