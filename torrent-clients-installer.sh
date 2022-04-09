@@ -27,7 +27,7 @@ echo "NOTE: With this qbittorrent script, it will default to downloading in the 
 echo "NOTE: The config files will default to /home/$USER/raspi-docker/qbittorrent unless otherwise changed in the script."
 echo "I recommend changing the locations of downloads and the config file location if yours is in an alternate location."
 echo " "
-echo "This Script assumes your timezone is US/Eastern. You may need to modify."
+echo "This Script assumes your timezone is US/Central. You may need to modify."
 ######################################################################
 
 #Update the system
@@ -97,9 +97,10 @@ if [ "$yesorno" = y ]; then
       - PUID=1001
       - PGID=100
       - UMASK=002
-      - TZ=US/Eastern
+      - TZ=US/Central
     volumes:
       - /home/$USER/raspi-docker/qbittorrent:/config
+      - /home/$USER/raspi-docker/downloads:/downloads
     restart: unless-stopped" >> /home/$USER/raspi-docker/docker-compose.yml 	#replace /home/$USER/raspi-docker/docker-compose.yml with the location of your docker-compose.yml file
 	echo " " >> /home/$USER/raspi-docker/docker-compose.yml		#replace /home/$USER/raspi-docker/docker-compose.yml with the location of your docker-compose.yml file
 	echo "Successfully Added"
@@ -123,7 +124,6 @@ read yesorno
 if [ "$yesorno" = y ]; then
 	mkdir /home/$USER/raspi-docker/transmission
 	mkdir /home/$USER/raspi-docker/transmission/config
-	mkdir /home/$USER/raspi-docker/transmission/downloads
 	echo "transmission:
     image: linuxserver/transmission
     container_name: transmission
@@ -136,7 +136,7 @@ if [ "$yesorno" = y ]; then
 #      - PASS=password #optional
     volumes:
       - ./home/$USER/raspi-docker/transmission/config:/config
-      - ./home/$USER/raspi-docker/transmission/downloads:/downloads
+      - ./home/$USER/raspi-docker/downloads:/downloads
       - ./downloads/TransmissionWatchFolder:/watch
     ports:
       - 9091:9091
@@ -165,7 +165,6 @@ read yesorno
 
 if [ "$yesorno" = y ]; then
 	mkdir /home/$USER/raspi-docker/deluge
-	mkdir /home/$USER/raspi-docker/deluge/downloads
 	mkdir /home/$USER/raspi-docker/deluge/config
 	echo "deluge:
     image: linuxserver/deluge
@@ -179,7 +178,7 @@ if [ "$yesorno" = y ]; then
       - DELUGE_LOGLEVEL=error #optional
     volumes:
       - ./home/$USER/raspi-docker/deluge/config:/config
-      - ./home/$USER/raspi-config/deluge:/downloads
+      - ./home/$USER/raspi-config/downloads:/downloads
     ports:
       - 8112:8112
       - 58846:58846
