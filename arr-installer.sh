@@ -67,7 +67,7 @@ if [ "$yesorno" = y ]; then
 	docker-compose -v
 	echo " "
 	echo "If no errors occured, Docker should be good to go."
-	echo "Docker-Compose version not found is not an error"
+	echo "Docker-Compose build unknown is not an error"
 	echo " "
 elif [ "$yesorno" = n ]; then
 	echo "Skipping..."
