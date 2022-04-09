@@ -99,7 +99,7 @@ if [ "$yesorno" = y ]; then
   environment:
    - PUID=1000
    - PGID=150
-   - TZ=US/Eastern
+   - TZ=US/Central
   image: portainer/portainer" >> /home/$USER/raspi-docker/docker-compose.yml		#replace /home/$USER/raspi-docker/docker-compose.yml with the location of your docker-compose.yml file
 echo " " >>/home/$USER/raspi-docker/docker-compose.yml #replace this location with the location docker-compose.yml if needed. 
 echo "Successfully Added"
@@ -122,19 +122,22 @@ echo "Would you like to install Sonarr? (y/n/e)"
 read yesorno
 
 if [ "$yesorno" = y ]; then
+	mkdir /home/$USER/raspi-docker/downloads/tv
+	mkdir /home/$USER/raspi-docker/sonarr
+	mkdir /home/$USER/raspi-docker/sonarr/config
 	echo "sonarr:
   container_name: sonarr
   restart: unless-stopped
   ports:
    - 8989:8989
   volumes:
-   - /home/dockeras/sonarr:/config
-   - /home/downloads:/downloads
-   - /home/downloads:/tv
+   - /home/$USER/raspi-docker/sonarr/config:/config
+   - /home/$USER/raspi-docker/downloads:/downloads
+   - /home/$USER/raspi-docker/downloads/tv:/tv
   environment:
    - PUID=1000
    - PGID=150
-   - TZ=US/Eastern
+   - TZ=US/Central
   image: linuxserver/sonarr" >> /home/$USER/raspi-docker/docker-compose.yml		#replace /home/$USER/raspi-docker/docker-compose.yml with the location of your docker-compose.yml file
 echo " " >>/home/$USER/raspi-docker/docker-compose.yml #replace this location with the location docker-compose.yml if needed.
 echo "Successfully Added"
@@ -157,6 +160,9 @@ echo "Would you like to install Radarr? (y/n/e)"
 read yesorno
 
 if [ "$yesorno" = y ]; then
+	mkdir /home/$USER/raspi-docker/radarr
+	mkdir /home/$USER/raspi-docker/downloads/movies
+	mkdir /home/$USER/raspi-docker/radarr/config
 	echo "radarr:
     image: linuxserver/radarr:5.14
     container_name: radarr
@@ -166,8 +172,8 @@ if [ "$yesorno" = y ]; then
       - TZ=UTC
       - UMASK=022 #optional
     volumes:
-      - ./home/dockeras/radarr:/config
-      - ./home/downloads:/movies
+      - ./home/$USER/raspi-docker/radarr/config:/config
+      - ./home/$USER/raspi-docker/downloads/movies
     ports:
       - 7878:7878
     restart: unless-stopped" >> /home/$USER/raspi-docker/docker-compose.yml 		#replace /home/$USER/raspi-docker/docker-compose.yml with the location of your docker-compose.yml file
@@ -192,17 +198,18 @@ echo "Would you like to install Jackett (Required for Sonarr/Radarr)? (y/n/e)"
 read yesorno
 
 if [ "$yesorno" = y ]; then
+	mkdir /home/$USER/raspi-docker/jackett
 	echo "jackett:
   container_name: jackett
   restart: unless-stopped
   ports:
    - 9117:9117
   volumes:
-   - /home/dockeras/jackett:/config
+   - /home/$USER/raspi-docker/jackett:/config
   environment:
    - PUID=1000
    - PGID=150
-   - TZ=US/Eastern
+   - TZ=US/Central
   image: linuxserver/jackett" >> /home/$USER/raspi-docker/docker-compose.yml 		#replace /home/$USER/raspi-docker/docker-compose.yml with the location of your docker-compose.yml file
 echo " " >>/home/$USER/raspi-docker/docker-compose.yml #replace this location with the location docker-compose.yml if needed.
 echo "Successfully Added"
@@ -265,18 +272,20 @@ echo "Would you like to install Readarr? (y/n/e)"
 read yesorno
 
 if [ "$yesorno" = y ]; then
-	mkdir readarr
+	mkdir /home/$USER/raspi-docker/readarr
+	mkdir /home/$USER/raspi-docker/readarr/config
+	mkdir mkdir /home/$USER/raspi-docker/downloads/books
 	echo "readarr:
     image: lscr.io/linuxserver/readarr:develop
     container_name: readarr
     environment:
       - PUID=${PUID}
       - PGID=${PGID}
-      - TZ=US/Eastern
+      - TZ=US/Central
     volumes:
-      - /home/$USER/raspi-docker/readarr:/config
+      - /home/$USER/raspi-docker/readarr/config:/config
       - /path/to/books:/books #optional
-      - /path/to/downloadclient-downloads:/downloads #optional
+      - /home/$USER/raspi-docker/downloads/books:/downloads #optional
     ports:
       - 8787:8787
     restart: unless-stopped" >> /home/$USER/raspi-docker/docker-compose.yml		#replace /home/$USER/raspi-docker/docker-compose.yml with the location of your docker-compose.yml file
@@ -297,25 +306,26 @@ fi
 
 
 
-#bazarr
+#Bazarr
 
 echo "Would you like to install Bazarr (Subtitles)? (y/n/e)"
 
 read yesorno
 
 if [ "$yesorno" = y ]; then
-	mkdir bazarr
+	mkdir /home/$USER/raspi-docker/bazarr
+	mkdir /home/$USER/raspi-docker/bazarr/config
 	echo "bazarr:
     image: lscr.io/linuxserver/bazarr
     container_name: bazarr
     environment:
       - PUID=${PUID}
       - PGID=${PGID}
-      - TZ=US/Eastern
+      - TZ=US/Central
     volumes:
-      - /home/$USER/raspi-docker/bazarr:/config
-      - /path/to/movies:/movies #optional
-      - /path/to/tv:/tv #optional
+      - /home/$USER/raspi-docker/bazarr/config:/config
+      - /home/$USER/raspi-docker/downloads/movies:/movies #optional
+      - /home/$USER/raspi-docker/downloads/tv:/tv #optional
     ports:
       - 6767:6767
     restart: unless-stopped" >> /home/$USER/raspi-docker/docker-compose.yml		#replace /home/$USER/raspi-docker/docker-compose.yml with the location of your docker-compose.yml file
@@ -336,24 +346,25 @@ fi
 
 
 
-#overseerr
+#Overseerr
 
 echo "Would you like to install Overseerr? (y/n/e)"
 
 read yesorno
 
 if [ "$yesorno" = y ]; then
-	mkdir Overseerr
+	mkdir /home/$USER/raspi-docker/overseerr
+	mkdir /home/$USER/raspi-docker/overseerr/config
 	echo "overseerr:
     image: sctx/overseerr:latest
     container_name: overseerr
     environment:
       - LOG_LEVEL=debug
-      - TZ=US/Eastern
+      - TZ=US/Central
     ports:
       - 5055:5055
     volumes:
-      - /home/$USER/raspi-docker/overseerr:/app/config
+      - /home/$USER/raspi-docker/overseerr/config:/app/config
     restart: unless-stopped" >> /home/$USER/raspi-docker/docker-compose.yml		#replace /home/$USER/raspi-docker/docker-compose.yml with the location of your docker-compose.yml file
 echo " " >>/home/$USER/raspi-docker/docker-compose.yml #replace this location with the location docker-compose.yml if needed. 
 echo "Successfully Added"
@@ -369,39 +380,6 @@ else
 fi
 
 
-#heimdall
-
-echo "Would you like to install Heimdall? (y/n/e)"
-
-read yesorno
-
-if [ "$yesorno" = y ]; then
-	mkdir heimdall
-	echo "heimdall:
-    image: lscr.io/linuxserver/heimdall
-    container_name: heimdall
-    environment:
-      - PUID=${PUID}
-      - PGID=${PGID}
-      - TZ=US/Eastern
-    volumes:
-      - /home/$USER/raspi-docker/heimdall:/config
-    ports:
-      - 80:80
-      - 443:443
-    restart: unless-stopped" >> /home/$USER/raspi-docker/docker-compose.yml		#replace /home/$USER/raspi-docker/docker-compose.yml with the location of your docker-compose.yml file
-echo " " >>/home/$USER/raspi-docker/docker-compose.yml #replace this location with the location docker-compose.yml if needed. 
-echo "Successfully Added"
-echo " "
-elif [ "$yesorno" = n ]; then
-	echo "Skipping..."
-elif [ "$yesorno" = e ]; then
-	echo "Goodbye!"
-	exit 1
-else
-	echo "Not a valid answer. Exiting..."
-	exit 1
-fi
 
 #Lidarr
 
@@ -411,6 +389,8 @@ read yesorno
 
 if [ "$yesorno" = y ]; then
 	mkdir /home/$USER/raspi-docker/lidarr
+	mkdir /home/$USER/raspi-docker/downloads/music
+	mkdir /home/$USER/raspi-docker/lidarr/config
 	echo "lidarr:
     image: lscr.io/linuxserver/lidarr
     container_name: lidarr
@@ -420,13 +400,49 @@ if [ "$yesorno" = y ]; then
       - TZ=Europe/London
     volumes:
       - /home/$USER/raspi-docker/lidarr/config:/config
-      - /path/to/music:/music #optional
-      - /path/to/downloads:/downloads #optional
+      - /home/$USER/raspi-docker/downloads/music:/music #optional
+      - /home/$USER/raspi-docker/downloads:/downloads #optional
     ports:
       - 8686:8686
     restart: unless-stopped" >> /home/$USER/raspi-docker/docker-compose.yml		#replace /home/$USER/raspi-docker/docker-compose.yml with the location of your docker-compose.yml file
 echo " " >>/home/$USER/raspi-docker/docker-compose.yml #replace this location with the location docker-compose.yml if needed.
 echo "Successfully Added"
+elif [ "$yesorno" = n ]; then
+	echo "Skipping..."
+elif [ "$yesorno" = e ]; then
+	echo "Goodbye!"
+	exit 1
+else
+	echo "Not a valid answer. Exiting..."
+	exit 1
+fi
+
+
+
+#Heimdall
+
+echo "Would you like to install Heimdall? (y/n/e)"
+
+read yesorno
+
+if [ "$yesorno" = y ]; then
+	mkdir /home/$USER/raspi-docker/heimdall
+	echo "heimdall:
+    image: lscr.io/linuxserver/heimdall
+    container_name: heimdall
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=US/Central
+    volumes:
+      - /home/$USER/raspi-docker/heimdall:/config
+    ports:
+      - 80:80
+      - 443:443
+    restart: unless-stopped" >> /home/$USER/raspi-docker/docker-compose.yml		#replace /home/$USER/raspi-docker/docker-compose.yml with the location of your docker-compose.yml file
+echo " " >>/home/$USER/raspi-docker/docker-compose.yml #replace this location with the location docker-compose.yml if needed. 
+echo "Successfully Added"
+echo " "
 elif [ "$yesorno" = n ]; then
 	echo "Skipping..."
 elif [ "$yesorno" = e ]; then
