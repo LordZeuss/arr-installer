@@ -234,7 +234,7 @@ echo "Would you like to install AdGuard (DNS Adblocker)? (y/n/e)"
 read yesorno
 
 if [ "$yesorno" = y ]; then
-	mkdir adguard
+	mkdir /home/$USER/raspi-docker/adguard
 	echo "adguardhome:
     image: adguard/adguardhome
     container_name: adguardhome
@@ -276,7 +276,7 @@ read yesorno
 if [ "$yesorno" = y ]; then
 	mkdir /home/$USER/raspi-docker/readarr
 	mkdir /home/$USER/raspi-docker/readarr/config
-	mkdir mkdir /home/$USER/raspi-docker/downloads/books
+	mkdir /home/$USER/raspi-docker/downloads/books
 	echo "readarr:
     image: lscr.io/linuxserver/readarr:develop
     container_name: readarr
