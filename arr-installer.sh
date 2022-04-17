@@ -11,11 +11,7 @@ ___  ____ _  _ ____    _ _  _ ____ ___ ____ _    _    ____ ____
 "
  
 #This is a script to help install essentials for docker. 
- 
-#This script will install portainer, sonarr, radarr, and jackett.
-
- 
- 
+  
  
 ######################################################################
  
