@@ -1,0 +1,149 @@
+I have included this text file in both my raspi-docker repository, as well as my arr-installer repository, since they are designed to use together, although you don't need to.
+
+Github Link to install docker, docker compose, wireguard, and mullvad
+https://github.com/LordZeuss/raspi-docker
+
+Github link to install arr programs (sonarr/radarr/prowlarr/bazarr etc)
+https://github.com/LordZeuss/arr-installer
+
+
+########################
+Information and Help
+########################
+
+Information about the script
+-----------------------------------------------------------------------------
+
+How do you edit the script?
+----------------------------
+
+To edit the script, you can open the script in a text editor, or through the command line, use the command: nano (filename)
+	For example: nano docker-install.sh
+This will allow you to edit the file inside the command line.
+There are other common text editors (like vim) but nano comes installed on most (if not all) debian systems by default. If for some reason you don't have nano, use the command: sudo apt install nano
+
+For nano, the control (Ctrl) key and clicking C at the same time (Listed in linux as ^C) will exit nano without saving. This will also cancel commands in the terminal.
+To save changes in nano, click control (Ctrl) and X at the same time (Listed as ^X), and it will give you the option to save the name under a new name, and you can change it, or click Y for yes, or N to not.
+
+Editing the script and what things mean
+-----------------------------------------
+
+Here is a copy and paste, of a docker-compose.yml setup for qbittorrent, as an example that I can break down.
+
+qbittorrent:
+    container_name: qbittorrent
+    image: hotio/qbittorrent
+    ports:
+      - 8282:8080
+    environment:
+      - PUID=1001
+      - PGID=100
+      - UMASK=002
+      - TZ=US/Central
+    volumes:
+      - /home/$USER/raspi-docker/qbittorrent:/config
+      - /home/$USER/raspi-docker/downloads:/downloads
+    restart: unless-stopped
+	
+Breakdown of the above text:
+	container_name, is what it is. it's just the name of the container which will appear in portainer.
+	image: hotio/qbittorrent is the container image. It's the actual program itself. You can google dockerhub, and search for images directly.
+	Ports: the first number (in this case 8282) is where you can access the port locally. For example: 192.168.1.10:8282 (IP:8282) the second number (8080) is the external port used by the container.
+	Environment: PUID & PGID is essentially mapping for the containers to tie to the host machine user. TZ is timezone. You will need to look up what yours is, if its not what I set as default.
+	Volumes: This where stuff that the container uses/access are stored on a drive. everything before :/ (in this case :/config and :/downloads) is the path on your system which it is stored.
+		What is $USER? it just represents the username of your current user on the system. For example, your username is Bob. /home/Bob/docker is the same as /home/$USER/docker.
+	restart: this is what happens if the container is unexpectly stopped. unless-stopped means that it will always restart unless the container is manually stopped. You can click a list of options to change it to, in portainer.
+
+
+This is what you would want to copy and paste into whereever your docker-compose.yml file is, but if anything, you can just edit the script, save it, and run it, and it will add it for you.
+Remember, clicking the f key, you can change the location of the docker-compose.yml file and have it save there.
+	
+What might you want to edit?
+------------------------------
+
+You likely will want to edit the TZ (timezone) to your local time, or the volumes. If you want to change the restart policy, I recommend doing it in portainer. It's as easy as a drop down menu.
+
+NOTE: The script will let you change the docker-compose.yml location, as well as the volume locations. If you want to change anything else, you will need to edit the script manually.
+
+If you wanted to change the config location for example, lets change the location that it is set above, to our new location.
+
+Old location:
+	/home/$USER/raspi-docker/qbittorrent:/config
+
+New location:
+	/home/Bob/docker:/config
+	
+You need to keep the :/ afterwards. In this case for config, we want to keep :/config. For downloads, we want to keep :/downloads.
+
+#############################################
+General Help and Commands
+#############################################
+
+-----------------
+Mounting a drive:
+-----------------
+
+Here is a link to a website that can help you mount a drive, better than I can explain.
+	https://linoxide.com/how-to-mount-drive-in-linux/
+	
+Here is a link for mounting a NAS.
+	https://www.systranbox.com/how-to-mount-nas-file-system-in-linux/
+
+----------------------------	
+How to start docker-compose
+----------------------------
+Command:	docker-compose up -d
+This command starts docker-compose, and will add and create any new containers added to the docker-compose.yml file.
+NOTE: if docker-compose is stopped, starting it will also update the containers.
+docker-start.sh will run this command as a script, but simply typing the command above will do it too. If you learn this, you can simply delete the script.
+
+---------------------------
+How to stop docker-compose
+---------------------------
+Command: 	docker-compose down
+This command stops the containers from running at all. They all stop.
+docker-stop.sh will run this command as a script, but simply typing the command above will do it too. If you learn this, you can simply delete the script.
+
+----------------------------------------
+How to update docker-compose containers
+----------------------------------------
+Commands:
+	Pull latest images: 	docker-compose pull
+	Restart containers: 	docker-compose up -d (OR) docker-compose up -d --remove-orphans
+	Remove Older Images:	docker image prune
+container-update.sh will run these commands as a script, but simply typing the command above will do it too. If you learn these, you can simply delete the script.
+
+--------------------------
+How to update your system
+--------------------------
+What the commands looks like:
+	sudo apt-get update
+	sudo apt-get upgrade
+	To run both at the same time: sudo apt-get update && sudo apt-get upgrade
+	
+	
+What is sudo? Sudo stands for super-user do. It is running a command as root. For windows users, this is like running it as admistrator.
+apt is the package manager for debian based systems.
+
+Whats the difference between update and upgrade?
+	Update is updating the packages in the package repository. Apt is the manager, and it needs the new packages.
+	Upgrade, is where it applies the updated packages to your system.
+	The && just means to also run the next command. To auto say yes, use sudo apt-get upgrade -y to automatically say yes. OR use yes | sudo apt-get upgrade
+
+-------------------------	
+How to install programs?
+-------------------------
+If you know the name of the package (For example, Vim, a text editor) then commands look like this:
+	sudo apt install vim
+	OR
+	sudo apt-get install vim
+	
+Simply replace vim with the name of the package/program that you are trying to install.
+
+
+
+
+
+
+
+	
