@@ -293,6 +293,8 @@ fi
 
 ######################################################
 
+#Prowlarr
+
 echo "Would you like install Prowlarr? (y/n/f/e)"
 
 read -n1 yesorno
@@ -332,7 +334,7 @@ elif [ "$yesorno" = f ]; then
           - PGID=1000
           - TZ=US/Central
         volumes:
-          - /path/to/data:/config
+          - $prowlarrconfig:/config
         ports:
           - 9696:9696
         restart: unless-stopped" >> $prowlarranswer
@@ -340,8 +342,8 @@ elif [ "$yesorno" = f ]; then
         echo "Done."
       echo " "
     elif [ "$fix" = n ]; then
-      echo "Not adding Transmission to any file."
-      source torrent-client-installer.sh
+      echo "Not adding Prowlarr to any file."
+      source arr-installer
       return
     else
       echo "Goodbye!"
@@ -418,7 +420,85 @@ else
 	echo "Not a valid answer. Exiting..."
 	exit 1
 fi
- 
+
+#############################################################
+
+echo "Would you like install Jellyfin Media Server? (y/n/f/e)"
+
+read -n1 yesorno
+
+if [ "$yesorno" = y ]; then
+	mkdir /home/$USER/raspi-docker/jellyfin
+	mkdir /home/$USER/raspi-docker/jellyfin/config
+	echo "jellyfin:
+    image: lscr.io/linuxserver/jellyfin
+    container_name: jellyfin
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=US/Central
+      - JELLYFIN_PublishedServerUrl=192.168.0.5 #optional
+    volumes:
+      - /path/to/library:/config
+      - /path/to/tvseries:/data/tvshows
+      - /path/to/movies:/data/movies
+    ports:
+      - 8096:8096
+      - 8920:8920 #optional
+      - 7359:7359/udp #optional
+      - 1900:1900/udp #optional
+    restart: unless-stopped" >> /home/$USER/raspi-docker/docker-compose.yml 	#replace /home/$USER/raspi-docker/docker-compose.yml with the location of your docker-compose.yml file
+	echo " " >> /home/$USER/raspi-docker/docker-compose.yml		#replace /home/$USER/raspi-docker/docker-compose.yml with the location of your docker-compose.yml file
+	echo "Successfully Added"
+elif [ "$yesorno" = n ]; then
+	echo "Skipping..."
+elif [ "$yesorno" = f ]; then
+        echo " "
+        read -n1 -p "You have selected to change the location/volumes of the container. Would you like to coninue? (y/n) " fix
+    if [ "$fix" = y ]; then
+      echo " "
+      read -p "Enter the location of the docker-compose.yml file: " jellyanswer
+      read -p "Enter the new location for config: " jellyconfig
+      read -p "Enter the new location for TV Shows: " jellytv
+      read -p "Enter the new location for Movies: " jellymovies
+      read -p "Enter the IP of the Server URL (Default is 192.168.0.5): " jellyip
+      sleep 1
+      echo "jellyfin:
+        image: lscr.io/linuxserver/jellyfin
+        container_name: jellyfin
+        environment:
+          - PUID=1000
+          - PGID=1000
+          - TZ=US/Central
+          - JELLYFIN_PublishedServerUrl=$jellyip #optional
+        volumes:
+          - $jellyconfig:/config
+          - $jellytv:/data/tvshows
+          - $jellymovies:/data/movies
+        ports:
+          - 8096:8096
+          - 8920:8920 #optional
+          - 7359:7359/udp #optional
+          - 1900:1900/udp #optional
+        restart: unless-stopped" >> $jellyanswer
+        echo " " >> $jellyanswer
+        echo "Done."
+      echo " "
+    elif [ "$fix" = n ]; then
+      echo "Not adding Jellyfin Media Server to any file."
+      source arr-installer.sh
+      return
+    else
+      echo "Goodbye!"
+      exit 1
+    fi
+elif [ "$yesorno" = e ]; then
+	echo "Goodbye!"
+	exit 1
+else
+	echo "Not a valid answer. Exiting..."
+	exit 1
+fi
 #############################################################################################
  
 #Install AdGuard
