@@ -241,7 +241,7 @@ if [ "$yesorno" = y ]; then
       - UMASK=022 #optional
     volumes:
       - ./home/$USER/raspi-docker/radarr/config:/config
-      - ./home/$USER/raspi-docker/downloads/movies
+      - ./home/$USER/raspi-docker/downloads/movies:/movies
     ports:
       - 7878:7878
     restart: unless-stopped" >> /home/$USER/raspi-docker/docker-compose.yml 		#replace /home/$USER/raspi-docker/docker-compose.yml with the location of your docker-compose.yml file
