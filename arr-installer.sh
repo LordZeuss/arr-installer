@@ -439,9 +439,9 @@ if [ "$yesorno" = y ]; then
       - TZ=US/Central
       - JELLYFIN_PublishedServerUrl=192.168.0.5 #optional
     volumes:
-      - /path/to/library:/config
-      - /path/to/tvseries:/data/tvshows
-      - /path/to/movies:/data/movies
+      - /home/$USER/raspi-docker/config:/config
+      - /home/$USER/raspi-docker/downloads/tv:/data/tvshows
+      - /home/$USER/raspi-docker/downloads/movies:/data/movies
     ports:
       - 8096:8096
       - 8920:8920 #optional
