@@ -46,6 +46,10 @@ I am not responsible for how you use these programs, I just wanted to write a sc
 * Bazarr      -Another Arr program that downloads subtitles
 * Lidarr      -Arr program for music
 * Heimdall    -A way to view the status on your containers. Isn't a portainer replacement.
+## Media Servers Included
+* Jellyfin
+
+-Future plans to add Plex and Emby.
 
 
 # Pre-Requirements
