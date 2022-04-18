@@ -232,7 +232,7 @@ if [ "$yesorno" = y ]; then
 	mkdir /home/$USER/raspi-docker/downloads/movies
 	mkdir /home/$USER/raspi-docker/radarr/config
 	echo "radarr:
-    image: linuxserver/radarr:5.14
+    image: lscr.io/linuxserver/radarr
     container_name: radarr
     environment:
       - PUID=0
@@ -259,7 +259,7 @@ elif [ "$yesorno" = f ]; then
 			read -p "Enter the new location of where the Movie Content is: " movies
 			sleep 1
 			echo "radarr:
-    image: linuxserver/radarr:5.14
+    image: lscr.io/linuxserver/radarr
     container_name: radarr
     environment:
       - PUID=0
