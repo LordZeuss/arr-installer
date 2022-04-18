@@ -24,9 +24,9 @@ updatesys () { yes | sudo apt-get update && sudo apt-get upgrade; }
  
 echo "This script assumes you have your docker files located in your /home/$USER/raspi-docker folder."
 echo " "
-echo "If your folder is located elsewhere, you will need to change the location of your docker-compose files in this script."
+echo "If your folder is located elsewhere, you will need to change the location of your docker-compose files in this script, or clicking f when selecting containers."
 echo " "
-echo "This script follows my other guide of insatlling Docker and Mullvad VPN. Visit https://github.com/LordZeuss/raspi-docker for more info."
+echo "This script follows my other guide of installing Docker and Mullvad VPN. Visit https://github.com/LordZeuss/raspi-docker for more info."
 echo " "
 ######################################################################
  
@@ -110,7 +110,7 @@ elif [ "$yesorno" = n ]; then
 	echo "Skipping..."
 elif [ "$yesorno" = f ]; then
         echo " "
-		read -n1 -p "You have selected to change the location of the docker-compose.yml file. Would you like to coninue? (y/n) " fix
+		read -n1 -p "You have selected to change the location/volumes of this container. Would you like to coninue? (y/n) " fix
 		echo " "
 		if [ "$fix" = y ]; then
       echo " "
@@ -182,7 +182,7 @@ elif [ "$yesorno" = e ]; then
 	exit 1
 elif [ "$yesorno" = f ]; then
         echo " "
-        read -n1 -p "You have selected to change the volumes of the container. Would you like to coninue? (y/n) " fix
+        read -n1 -p "You have selected to change the location/volumes of the container. Would you like to coninue? (y/n) " fix
 		if [ "$fix" = y ]; then
       echo " "
       read -p "Enter the location of the docker-compose.yml file: " sonarranswer
@@ -251,7 +251,7 @@ elif [ "$yesorno" = n ]; then
 	echo "Skipping..."
 elif [ "$yesorno" = f ]; then
         echo " "
-        read -n1 -p "You have selected to change the volumes of the container. Would you like to coninue? (y/n) " fix
+        read -n1 -p "You have selected to change the location/volumes of the container. Would you like to coninue? (y/n) " fix
 		if [ "$fix" = y ]; then
       echo " "
     	read -p "Enter the location of the docker-compose.yml file: " radarranswer
@@ -319,7 +319,7 @@ elif [ "$yesorno" = n ]; then
 	echo "Skipping..."
 elif [ "$yesorno" = f ]; then
     echo " "
-    read -n1 -p "You have selected to change the volumes of the container. Would you like to coninue? (y/n) " fix
+    read -n1 -p "You have selected to change the location/volumes of the container. Would you like to coninue? (y/n) " fix
 		if [ "$fix" = y ]; then
       echo " "
       read -p "Enter the location of the docker-compose.yml file: " jackettanswer
@@ -391,7 +391,7 @@ elif [ "$yesorno" = n ]; then
 	echo "Skipping..."
 elif [ "$yesorno" = f ]; then
     echo " "
-  	read -n1 -p "You have selected to change the volumes of the container. Would you like to coninue? (y/n) " fix
+  	read -n1 -p "You have selected to change the location/volumes of the container. Would you like to coninue? (y/n) " fix
 		if [ "$fix" = y ]; then
       echo " "
       read -p "Enter the location of the docker-compose.yml file: " adguardanswer
@@ -464,7 +464,7 @@ elif [ "$yesorno" = n ]; then
 	echo "Skipping..."
 elif [ "$yesorno" = f ]; then
         echo " "
-        read -n1 -p "You have selected to change the volumes of the container. Would you like to coninue? (y/n) " fix
+        read -n1 -p "You have selected to change the location/volumes of the container. Would you like to coninue? (y/n) " fix
 		if [ "$fix" = y ]; then
      			echo " "
      			read -p "Enter the location of the docker-compose.yml file: " readarranswer
@@ -539,7 +539,7 @@ elif [ "$yesorno" = n ]; then
 	echo "Skipping..."
 elif [ "$yesorno" = f ]; then
         echo " "
-        read -n1 -p "You have selected to change the volumes of the container. Would you like to coninue? (y/n) " fix
+        read -n1 -p "You have selected to change the location/volumes of the container. Would you like to coninue? (y/n) " fix
 		if [ "$fix" = y ]; then
       echo " "
       read -p "Enter the location of the docker-compose.yml file: " bazarranswer
@@ -609,7 +609,7 @@ elif [ "$yesorno" = n ]; then
 	echo "Skipping..."
 elif [ "$yesorno" = f ]; then
         echo " "
-        read -n1 -p "You have selected to change the volumes of the container. Would you like to coninue? (y/n) " fix
+        read -n1 -p "You have selected to change the location/volumes of the container. Would you like to coninue? (y/n) " fix
 		if [ "$fix" = y ]; then
       echo " "
     	read -p "Enter the location of the docker-compose.yml file: " overanswer
@@ -677,7 +677,7 @@ elif [ "$yesorno" = n ]; then
 	echo "Skipping..."
 elif [ "$yesorno" = f ]; then
         echo " "
-        read -n1 -p "You have selected to change the volumes of the container. Would you like to coninue? (y/n) " fix
+        read -n1 -p "You have selected to change the location/volumes of the container. Would you like to coninue? (y/n) " fix
 		if [ "$fix" = y ]; then
       echo " "
       read -p "Enter the location of the docker-compose.yml file: " lidarranswer
@@ -749,7 +749,7 @@ elif [ "$yesorno" = n ]; then
 	echo "Skipping..."
 elif [ "$yesorno" = f ]; then
         echo " "
-        read -n1 -p "You have selected to change the volumes of the container. Would you like to coninue? (y/n) " fix
+        read -n1 -p "You have selected to change the location/volumes of the container. Would you like to coninue? (y/n) " fix
 		if [ "$fix" = y ]; then
       echo " "
       read -p "Enter the location of the docker-compose.yml file: " heimdallanswer
