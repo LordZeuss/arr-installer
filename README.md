@@ -92,11 +92,11 @@ Inside of the script, navigate to the section for the container you want to edit
 Find the line that you want to edit. For example, you may want to change US/Eastern to US/Central.
 Example of change:
 ```
--TZ=US/Eastern
+-TZ=US/Central
 ```
 Changed:
 ```
--TZ=US/Central
+-TZ=US/Eastern
 ```
 
 To change locations of your docker files:
