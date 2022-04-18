@@ -72,7 +72,7 @@ To run the scripts, run these commands:
 
 ```
 ./arr-installer.sh
-./qbittorrent.sh
+./torrent-client-installer.sh
 ```
 
 # Modification
@@ -80,7 +80,7 @@ If you need to edit the script, you can do so by running the commands
 
 ```
 nano arr-installer.sh
-nano qbittorrent.sh
+nano torrent-client-installer.sh
 ```
 
 Things you may want to change:
