@@ -33,6 +33,7 @@ I am not responsible for how you use these programs, I just wanted to write a sc
 * Sonarr      -for TV shows
 * Radarr      -for Movies
 * Jackett     -indexing for Sonarr/Radarr
+* Prowlarr    -indexing for Sonarr/Radarr (Better than Jackett)
 * Readarr     -Like sonarr/radarr but for books
 * Bazarr      -Another Arr program that downloads subtitles
 * Portainer   -interface to manage containers (This is an essential)
