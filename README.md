@@ -96,7 +96,7 @@ Example of change:
 ```
 Changed:
 ```
--TZ=US/Eastern
+-TZ=Europe/London
 ```
 
 To change locations of your docker files:
