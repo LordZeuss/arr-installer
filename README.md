@@ -49,8 +49,7 @@ I am not responsible for how you use these programs, I just wanted to write a sc
 ## Media Servers Included
 * Jellyfin
 * Plex
-
--Future plans to add Emby.
+* Emby
 
 
 # Pre-Requirements
