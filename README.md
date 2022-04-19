@@ -124,18 +124,6 @@ Example: Your username is Bob. /home/Bob/docker is the same as /home/$USER/docke
 You can usually change these settings inside of portainer as well. There is also many videos about docker-compose if you need to edit more or if you need more help.
 
 # Running the Containers
-How do you access portainer to see your containers?
-Run the command 
-```
-hostname -I
-```
-This will show you your system IP (local IP)
-
-You can then open a web-browser, type in the IP with port 9000 and hit enter
-* Example: 192.168.1.10:9000
-```
-IP:9000 click enter
-```
 
 Navigate to the folder where your docker-compose.yml file is located
 * Default is /home/$USER/raspi-docker
@@ -147,6 +135,19 @@ docker-compose up -d
 For whatever reason, if you want to turn off/recreate the docker containers run the command
 ```
 docker-compose down
+```
+How do you access portainer to see your containers?
+Run the command 
+```
+hostname -I
+```
+This will show you your system IP (local IP)
+It will be the first set of numbers.
+
+You can then open a web-browser, type in the IP with port 9000 and hit enter
+* Example: 192.168.1.10:9000
+```
+IP:9000 click enter
 ```
 
 # Conclusion
