@@ -48,8 +48,9 @@ I am not responsible for how you use these programs, I just wanted to write a sc
 * Heimdall    -A way to view the status on your containers. Isn't a portainer replacement.
 ## Media Servers Included
 * Jellyfin
+* Plex
 
--Future plans to add Plex and Emby.
+-Future plans to add Emby.
 
 
 # Pre-Requirements
