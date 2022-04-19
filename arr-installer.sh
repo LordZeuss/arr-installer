@@ -1,27 +1,27 @@
-#!/bin/bash 
- 
+#!/bin/bash
+
 clear
- 
+
 echo "
- 
-___  ____ _  _ ____    _ _  _ ____ ___ ____ _    _    ____ ____ 
-  /  |___ |  | [__     | |\ | [__   |  |__| |    |    |___ |__/ 
- /__ |___ |__| ___]    | | \| ___]  |  |  | |___ |___ |___ |  \ 
- 
+
+___  ____ _  _ ____    _ _  _ ____ ___ ____ _    _    ____ ____
+  /  |___ |  | [__     | |\ | [__   |  |__| |    |    |___ |__/
+ /__ |___ |__| ___]    | | \| ___]  |  |  | |___ |___ |___ |  \
+
 "
- 
-#This is a script to help install essentials for docker. 
-  
- 
+
+#This is a script to help install essentials for docker.
+
+
 ######################################################################
- 
+
 #Functions List
- 
+
 noanswer () { echo "Skipping..." ; }
 updatesys () { yes | sudo apt-get update && sudo apt-get upgrade; }
- 
+
 ######################################################################
- 
+
 echo "This script assumes you have your docker files located in your /home/$USER/raspi-docker folder."
 echo " "
 echo "If your folder is located elsewhere, you will need to change the location of your docker-compose files in this script, or clicking f when selecting containers."
@@ -29,17 +29,17 @@ echo " "
 echo "This script follows my other guide of installing Docker and Mullvad VPN. Visit https://github.com/LordZeuss/raspi-docker for more info."
 echo " "
 ######################################################################
- 
+
 #Update the system
 echo " "
 echo "Would you like to update your system (Recommended)? (y/n/e)"
 echo " "
 echo "y=yes | n=no | f=Change-container-volumes-&-location | e=exit-program"
 echo " "
- 
+
 read -n1 yesorno
 echo " "
- 
+
 if [ "$yesorno" = y ]; then
 	updatesys
 	echo "Update Successful."
@@ -54,16 +54,16 @@ else
 	echo "Not a valid answer. Exiting..."
 	exit 1
 fi
- 
+
 ######################################################################
- 
+
 #Test if Docker is working and installed
- 
+
 echo "Would you like to check if Docker is working(Recommended)? (y/n/e)"
- 
+
 read -n1 yesorno
 echo " "
- 
+
 if [ "$yesorno" = y ]; then
 	echo 'Checking Docker version...'
 	docker version
@@ -81,15 +81,15 @@ else
 	echo "Not a valid answer. Exiting..."
 	exit 1
 fi
- 
+
 ######################################################################
- 
+
 #Install Portainer
- 
+
 echo "Would you like to install Portainer (Required if not already insalled)? (y/n/f/e)"
 echo " "
 read -n1 yesorno
- 
+
 if [ "$yesorno" = y ]; then
 	echo "portainer:
   container_name: portainer
@@ -104,7 +104,7 @@ if [ "$yesorno" = y ]; then
    - PGID=150
    - TZ=US/Central
   image: portainer/portainer" >> /home/$USER/raspi-docker/docker-compose.yml		#replace /home/$USER/raspi-docker/docker-compose.yml with the location of your docker-compose.yml file
-echo " " >>/home/$USER/raspi-docker/docker-compose.yml #replace this location with the location docker-compose.yml if needed. 
+echo " " >>/home/$USER/raspi-docker/docker-compose.yml #replace this location with the location docker-compose.yml if needed.
 echo "Successfully Added"
 elif [ "$yesorno" = n ]; then
 	echo "Skipping..."
@@ -146,15 +146,15 @@ else
 	echo "Not a valid answer. Exiting..."
 	exit 1
 fi
- 
+
 ######################################################################
- 
+
 #Install Sonarr
- 
+
 echo "Would you like to install Sonarr? (y/n/f/e)"
 echo " "
 read -n1 yesorno
- 
+
 if [ "$yesorno" = y ]; then
 	mkdir /home/$USER/raspi-docker/downloads/tv
 	mkdir /home/$USER/raspi-docker/sonarr
@@ -205,7 +205,7 @@ elif [ "$yesorno" = f ]; then
    - TZ=US/Central
   image: linuxserver/sonarr" >> $sonarranswer
   			echo " " >> $sonarranswer
-  			
+
 		elif [ "$fix" = n ]; then
 			echo "Not adding Sonarr to any file."
 			source arr-installer.sh
@@ -218,15 +218,15 @@ else
 	echo "Not a valid answer. Exiting..."
 	exit 1
 fi
- 
+
 ######################################################################
- 
+
 #Install Radarr
- 
+
 echo "Would you like to install Radarr? (y/n/f/e)"
- 
+
 read -n1 yesorno
- 
+
 if [ "$yesorno" = y ]; then
 	mkdir /home/$USER/raspi-docker/radarr
 	mkdir /home/$USER/raspi-docker/downloads/movies
@@ -357,13 +357,13 @@ else
 	exit 1
 fi
 ######################################################################
- 
+
 #Installing Jackett
- 
+
 echo "Would you like to install Jackett (Required for Sonarr/Radarr)? (y/n/f/e)"
- 
+
 read -n1 yesorno
- 
+
 if [ "$yesorno" = y ]; then
 	mkdir /home/$USER/raspi-docker/jackett
 	echo "jackett:
@@ -423,7 +423,7 @@ fi
 
 #############################################################
 
-#Jellyfin 
+#Jellyfin
 
 echo "Would you like install Jellyfin Media Server? (y/n/f/e)"
 
@@ -504,11 +504,11 @@ fi
 #############################################################################################
 
 #Plex
- 
+
 echo "Would you like to install Plex Media Server? (y/n/f/e)"
- 
+
 read -n1 yesorno
- 
+
 if [ "$yesorno" = y ]; then
  mkdir /home/$USER/raspi-docker/plex
  mkdir /home/$USER/raspi-docker/plex/config
@@ -562,12 +562,89 @@ fi
 
 ##############################################################
 
-#Install AdGuard
- 
-echo "Would you like to install AdGuard (DNS Adblocker)? (y/n/f/e)"
- 
+#Emby
+
+echo "Would you like to install Emby? (y/n/f/e)"
+
 read -n1 yesorno
- 
+
+if [ "$yesorno" = y ]; then
+	mkdir /home/$USER/raspi-docker/emby
+  mkdir /home/$USER/raspi-docker/emby/config
+	echo "emby:
+    image: lscr.io/linuxserver/emby
+    container_name: emby
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=US/Central
+    volumes:
+      - /home/$USER/raspi-docker/emby/config:/config
+      - /home/$USER/raspi-docker/downloads/tv:/data/tvshows
+      - /home/$USER/raspi-docker/downloads/movies:/data/movies
+      - /opt/vc/lib:/opt/vc/lib #optional
+    ports:
+      - 8096:8096
+      - 8920:8920 #optional
+    restart: unless-stopped" >> /home/$USER/raspi-docker/docker-compose.yml		#replace /home/$USER/raspi-docker/docker-compose.yml with the location of your docker-compose.yml file
+echo " " >>/home/$USER/raspi-docker/docker-compose.yml #replace this location with the location docker-compose.yml if needed.
+echo "Successfully Added"
+echo " "
+elif [ "$yesorno" = n ]; then
+	echo "Skipping..."
+elif [ "$yesorno" = f ]; then
+    echo " "
+  	read -n1 -p "You have selected to change the location/volumes of the container. Would you like to continue? (y/n) " fix
+		if [ "$fix" = y ]; then
+      echo " "
+      read -p "Enter the location of the docker-compose.yml file: " embyanswer
+      read -p "Enter the location of config: " embyconfig
+      read -p "Enter the location of your TV Shows: " embytv
+      read -p "Enter the location of your Movies: " embymovies
+			sleep 1
+			echo "emby:
+    image: lscr.io/linuxserver/emby
+    container_name: emby
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/London
+    volumes:
+      - $embyconfig:/config
+      - $embytv:/data/tvshows
+      - $embymovies:/data/movies
+      - /opt/vc/lib:/opt/vc/lib #optional
+    ports:
+      - 8096:8096
+      - 8920:8920 #optional
+    restart: unless-stopped" >> $embyanswer
+  			echo " " >> $embyanswer
+  			echo "Done."
+			echo " "
+		elif [ "$fix" = n ]; then
+			echo "Not adding Emby to any file."
+			source arr-installer.sh
+			return
+		else
+			echo "Goodbye!"
+			exit 1
+		fi
+elif [ "$yesorno" = e ]; then
+	echo "Goodbye!"
+	exit 1
+else
+	echo "Not a valid answer. Exiting..."
+	exit 1
+fi
+
+##############################################################
+
+#Install AdGuard
+
+echo "Would you like to install AdGuard (DNS Adblocker)? (y/n/f/e)"
+
+read -n1 yesorno
+
 if [ "$yesorno" = y ]; then
 	mkdir /home/$USER/raspi-docker/adguard
 	echo "adguardhome:
@@ -585,7 +662,7 @@ if [ "$yesorno" = y ]; then
       - ./workdir:/opt/adguardhome/work
       - ./confdir:/opt/adguardhome/conf
     restart: unless-stopped" >> /home/$USER/raspi-docker/docker-compose.yml		#replace /home/$USER/raspi-docker/docker-compose.yml with the location of your docker-compose.yml file
-echo " " >>/home/$USER/raspi-docker/docker-compose.yml #replace this location with the location docker-compose.yml if needed. 
+echo " " >>/home/$USER/raspi-docker/docker-compose.yml #replace this location with the location docker-compose.yml if needed.
 echo "Successfully Added"
 echo " "
 echo "Add - 67:67/udp -p 68:68/tcp -p 68:68/udp to use AdGuard as DHCP Server."
@@ -633,14 +710,14 @@ else
 	echo "Not a valid answer. Exiting..."
 	exit 1
 fi
- 
- 
+
+
 #Readarr
- 
+
 echo "Would you like to install Readarr? (y/n/f/e)"
- 
+
 read -n1 yesorno
- 
+
 if [ "$yesorno" = y ]; then
 	mkdir /home/$USER/raspi-docker/readarr
 	mkdir /home/$USER/raspi-docker/readarr/config
@@ -659,7 +736,7 @@ if [ "$yesorno" = y ]; then
     ports:
       - 8787:8787
     restart: unless-stopped" >> /home/$USER/raspi-docker/docker-compose.yml		#replace /home/$USER/raspi-docker/docker-compose.yml with the location of your docker-compose.yml file
-echo " " >>/home/$USER/raspi-docker/docker-compose.yml #replace this location with the location docker-compose.yml if needed. 
+echo " " >>/home/$USER/raspi-docker/docker-compose.yml #replace this location with the location docker-compose.yml if needed.
 echo "Successfully Added"
 echo " "
 echo "Don't forget to add the path to your books and or download client!"
@@ -708,15 +785,15 @@ else
 	echo "Not a valid answer. Exiting..."
 	exit 1
 fi
- 
- 
- 
+
+
+
 #Bazarr
- 
+
 echo "Would you like to install Bazarr (Subtitles)? (y/n/f/e)"
- 
+
 read -n1 yesorno
- 
+
 if [ "$yesorno" = y ]; then
 	mkdir /home/$USER/raspi-docker/bazarr
 	mkdir /home/$USER/raspi-docker/bazarr/config
@@ -734,7 +811,7 @@ if [ "$yesorno" = y ]; then
     ports:
       - 6767:6767
     restart: unless-stopped" >> /home/$USER/raspi-docker/docker-compose.yml		#replace /home/$USER/raspi-docker/docker-compose.yml with the location of your docker-compose.yml file
-echo " " >>/home/$USER/raspi-docker/docker-compose.yml #replace this location with the location docker-compose.yml if needed. 
+echo " " >>/home/$USER/raspi-docker/docker-compose.yml #replace this location with the location docker-compose.yml if needed.
 echo "Successfully Added"
 echo " "
 echo "Don't forget to add the path to your movies and tv shows!"
@@ -783,15 +860,15 @@ else
 	echo "Not a valid answer. Exiting..."
 	exit 1
 fi
- 
- 
- 
+
+
+
 #Overseerr
- 
+
 echo "Would you like to install Overseerr? (y/n/f/e)"
- 
+
 read -n1 yesorno
- 
+
 if [ "$yesorno" = y ]; then
 	mkdir /home/$USER/raspi-docker/overseerr
 	mkdir /home/$USER/raspi-docker/overseerr/config
@@ -806,7 +883,7 @@ if [ "$yesorno" = y ]; then
     volumes:
       - /home/$USER/raspi-docker/overseerr/config:/app/config
     restart: unless-stopped" >> /home/$USER/raspi-docker/docker-compose.yml		#replace /home/$USER/raspi-docker/docker-compose.yml with the location of your docker-compose.yml file
-echo " " >>/home/$USER/raspi-docker/docker-compose.yml #replace this location with the location docker-compose.yml if needed. 
+echo " " >>/home/$USER/raspi-docker/docker-compose.yml #replace this location with the location docker-compose.yml if needed.
 echo "Successfully Added"
 echo " "
 elif [ "$yesorno" = n ]; then
@@ -848,15 +925,15 @@ else
 	echo "Not a valid answer. Exiting..."
 	exit 1
 fi
- 
- 
- 
+
+
+
 #Lidarr
- 
+
 echo "Would you like to install Lidarr (Music)? (y/n/f/e)"
- 
+
 read -n1 yesorno
- 
+
 if [ "$yesorno" = y ]; then
 	mkdir /home/$USER/raspi-docker/lidarr
 	mkdir /home/$USER/raspi-docker/downloads/music
@@ -922,15 +999,15 @@ else
 	echo "Not a valid answer. Exiting..."
 	exit 1
 fi
- 
- 
- 
+
+
+
 #Heimdall
- 
+
 echo "Would you like to install Heimdall? (y/n/f/e)"
- 
+
 read -n1 yesorno
- 
+
 if [ "$yesorno" = y ]; then
 	mkdir /home/$USER/raspi-docker/heimdall
 	echo "heimdall:
@@ -946,7 +1023,7 @@ if [ "$yesorno" = y ]; then
       - 80:80
       - 443:443
     restart: unless-stopped" >> /home/$USER/raspi-docker/docker-compose.yml		#replace /home/$USER/raspi-docker/docker-compose.yml with the location of your docker-compose.yml file
-echo " " >>/home/$USER/raspi-docker/docker-compose.yml #replace this location with the location docker-compose.yml if needed. 
+echo " " >>/home/$USER/raspi-docker/docker-compose.yml #replace this location with the location docker-compose.yml if needed.
 echo "Successfully Added"
 echo " "
 elif [ "$yesorno" = n ]; then
@@ -990,9 +1067,9 @@ else
 	echo "Not a valid answer. Exiting..."
 	exit 1
 fi
- 
- 
- 
+
+
+
 echo " "
 echo "Installer Complete. Run torrent-clients-installer.sh if you would like to install a torrent client as well."
 echo " "
