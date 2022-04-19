@@ -110,7 +110,7 @@ elif [ "$yesorno" = n ]; then
 	echo "Skipping..."
 elif [ "$yesorno" = f ]; then
         echo " "
-		read -n1 -p "You have selected to change the location/volumes of this container. Would you like to coninue? (y/n) " fix
+		read -n1 -p "You have selected to change the location/volumes of this container. Would you like to continue? (y/n) " fix
 		echo " "
 		if [ "$fix" = y ]; then
       echo " "
@@ -182,7 +182,7 @@ elif [ "$yesorno" = e ]; then
 	exit 1
 elif [ "$yesorno" = f ]; then
         echo " "
-        read -n1 -p "You have selected to change the location/volumes of the container. Would you like to coninue? (y/n) " fix
+        read -n1 -p "You have selected to change the location/volumes of the container. Would you like to continue? (y/n) " fix
 		if [ "$fix" = y ]; then
       echo " "
       read -p "Enter the location of the docker-compose.yml file: " sonarranswer
@@ -251,7 +251,7 @@ elif [ "$yesorno" = n ]; then
 	echo "Skipping..."
 elif [ "$yesorno" = f ]; then
         echo " "
-        read -n1 -p "You have selected to change the location/volumes of the container. Would you like to coninue? (y/n) " fix
+        read -n1 -p "You have selected to change the location/volumes of the container. Would you like to continue? (y/n) " fix
 		if [ "$fix" = y ]; then
       echo " "
     	read -p "Enter the location of the docker-compose.yml file: " radarranswer
@@ -320,7 +320,7 @@ elif [ "$yesorno" = n ]; then
 	echo "Skipping..."
 elif [ "$yesorno" = f ]; then
         echo " "
-        read -n1 -p "You have selected to change the location/volumes of the container. Would you like to coninue? (y/n) " fix
+        read -n1 -p "You have selected to change the location/volumes of the container. Would you like to continue? (y/n) " fix
     if [ "$fix" = y ]; then
       echo " "
       read -p "Enter the location of the docker-compose.yml file: " prowlarranswer
@@ -384,7 +384,7 @@ elif [ "$yesorno" = n ]; then
 	echo "Skipping..."
 elif [ "$yesorno" = f ]; then
     echo " "
-    read -n1 -p "You have selected to change the location/volumes of the container. Would you like to coninue? (y/n) " fix
+    read -n1 -p "You have selected to change the location/volumes of the container. Would you like to continue? (y/n) " fix
 		if [ "$fix" = y ]; then
       echo " "
       read -p "Enter the location of the docker-compose.yml file: " jackettanswer
@@ -423,6 +423,8 @@ fi
 
 #############################################################
 
+#Jellyfin 
+
 echo "Would you like install Jellyfin Media Server? (y/n/f/e)"
 
 read -n1 yesorno
@@ -454,7 +456,7 @@ elif [ "$yesorno" = n ]; then
 	echo "Skipping..."
 elif [ "$yesorno" = f ]; then
         echo " "
-        read -n1 -p "You have selected to change the location/volumes of the container. Would you like to coninue? (y/n) " fix
+        read -n1 -p "You have selected to change the location/volumes of the container. Would you like to continue? (y/n) " fix
     if [ "$fix" = y ]; then
       echo " "
       read -p "Enter the location of the docker-compose.yml file: " jellyanswer
@@ -500,7 +502,66 @@ else
 	exit 1
 fi
 #############################################################################################
+
+#Plex
  
+echo "Would you like to install Plex Media Server? (y/n/f/e)"
+ 
+read -n1 yesorno
+ 
+if [ "$yesorno" = y ]; then
+ mkdir /home/$USER/raspi-docker/plex
+ mkdir /home/$USER/raspi-docker/plex/config
+ read -p "Enter your Plex Claim Token: " plextoken
+  sudo docker run \
+-d \
+--name plex \
+--network=host \
+-e TZ="America/Chicago" \
+-e PLEX_CLAIM="$plextoken" \
+-v /home/$USER/raspi-docker/plex/config:/config \
+-v /home/$USER/raspi-docker/downloads/movies:/movies \
+-v /home/$USER/raspi-docker/downloads/tv:/tv \
+plexinc/pms-docker:plexpass
+elif [ "$yesorno" = n ]; then
+ echo "Skipping..."
+elif [ "$yesorno" = f ]; then
+        echo " "
+        read -n1 -p "You have selected to use a custom Plex Server Setup. Would you like to continue? (y/n) " fix
+   if [ "$fix" = y ]; then
+     echo " "
+    read -p "Enter your Plex Claim Token: " plextoken2
+    read -p "Enter your config location: " plexconfig
+    read -P "Enter the location of your Movies: " plexmovies
+    read -p "Enter the location of your TV Shows: " plextv
+    sudo docker run \
+  -d \
+  --name plex \
+  --network=host \
+  -e TZ="America/Chicago" \
+  -e PLEX_CLAIM="$plextoken2" \
+  -v $plexconfig:/config \
+  -v $plexmovies:/movies \
+  -v $plextv:/tv \
+  plexinc/pms-docker:plexpass
+   elif [ "$fix" = n ]; then
+     echo "Not adding Plex."
+     source arr-installer.sh
+     return
+   else
+     echo "Goodbye!"
+     exit 1
+   fi
+elif [ "$yesorno" = e ]; then
+ echo "Goodbye!"
+ exit 1
+else
+ echo "Not a valid answer. Exiting..."
+ exit 1
+fi
+
+##############################################################
+
 #Install AdGuard
  
 echo "Would you like to install AdGuard (DNS Adblocker)? (y/n/f/e)"
@@ -534,7 +595,7 @@ elif [ "$yesorno" = n ]; then
 	echo "Skipping..."
 elif [ "$yesorno" = f ]; then
     echo " "
-  	read -n1 -p "You have selected to change the location/volumes of the container. Would you like to coninue? (y/n) " fix
+  	read -n1 -p "You have selected to change the location/volumes of the container. Would you like to continue? (y/n) " fix
 		if [ "$fix" = y ]; then
       echo " "
       read -p "Enter the location of the docker-compose.yml file: " adguardanswer
@@ -607,7 +668,7 @@ elif [ "$yesorno" = n ]; then
 	echo "Skipping..."
 elif [ "$yesorno" = f ]; then
         echo " "
-        read -n1 -p "You have selected to change the location/volumes of the container. Would you like to coninue? (y/n) " fix
+        read -n1 -p "You have selected to change the location/volumes of the container. Would you like to continue? (y/n) " fix
 		if [ "$fix" = y ]; then
      			echo " "
      			read -p "Enter the location of the docker-compose.yml file: " readarranswer
@@ -682,7 +743,7 @@ elif [ "$yesorno" = n ]; then
 	echo "Skipping..."
 elif [ "$yesorno" = f ]; then
         echo " "
-        read -n1 -p "You have selected to change the location/volumes of the container. Would you like to coninue? (y/n) " fix
+        read -n1 -p "You have selected to change the location/volumes of the container. Would you like to continue? (y/n) " fix
 		if [ "$fix" = y ]; then
       echo " "
       read -p "Enter the location of the docker-compose.yml file: " bazarranswer
@@ -752,7 +813,7 @@ elif [ "$yesorno" = n ]; then
 	echo "Skipping..."
 elif [ "$yesorno" = f ]; then
         echo " "
-        read -n1 -p "You have selected to change the location/volumes of the container. Would you like to coninue? (y/n) " fix
+        read -n1 -p "You have selected to change the location/volumes of the container. Would you like to continue? (y/n) " fix
 		if [ "$fix" = y ]; then
       echo " "
     	read -p "Enter the location of the docker-compose.yml file: " overanswer
@@ -820,7 +881,7 @@ elif [ "$yesorno" = n ]; then
 	echo "Skipping..."
 elif [ "$yesorno" = f ]; then
         echo " "
-        read -n1 -p "You have selected to change the location/volumes of the container. Would you like to coninue? (y/n) " fix
+        read -n1 -p "You have selected to change the location/volumes of the container. Would you like to continue? (y/n) " fix
 		if [ "$fix" = y ]; then
       echo " "
       read -p "Enter the location of the docker-compose.yml file: " lidarranswer
@@ -892,7 +953,7 @@ elif [ "$yesorno" = n ]; then
 	echo "Skipping..."
 elif [ "$yesorno" = f ]; then
         echo " "
-        read -n1 -p "You have selected to change the location/volumes of the container. Would you like to coninue? (y/n) " fix
+        read -n1 -p "You have selected to change the location/volumes of the container. Would you like to continue? (y/n) " fix
 		if [ "$fix" = y ]; then
       echo " "
       read -p "Enter the location of the docker-compose.yml file: " heimdallanswer
