@@ -7,9 +7,9 @@ Github link to install arr programs (sonarr/radarr/prowlarr/bazarr etc)
 https://github.com/LordZeuss/arr-installer
 
 
-########################
-Information and Help
-########################
+#######################################################################################################################################################
+							Information and Help
+#######################################################################################################################################################
 
 Information about the script
 -----------------------------------------------------------------------------
@@ -75,9 +75,39 @@ New location:
 	
 You need to keep the :/ afterwards. In this case for config, we want to keep :/config. For downloads, we want to keep :/downloads.
 
-#############################################
-General Help and Commands
-#############################################
+#######################################################################################################################################################
+						General Help and Commands
+#######################################################################################################################################################
+
+---------------------------------------
+Port 53 in use error with Adguard Home:
+---------------------------------------
+Q: When I try to start Adguard Home via the command line with docker-compose up -d or through portainer, I'm getting a port 53 in use error?
+A: This was a struggle for me to figure out, but here is what I found.
+
+Run these Commands:
+
+sudo mkdir /etc/systemd/resolved.conf.d
+cd /etc/systemd/resolved.conf.d
+sudo vim adguardhome.conf
+sudo mv /etc/resolv.conf /etc/resolv.conf.backup
+sudo ln -s /run/systemd/resolve/resolv.conf /etc/resolv.conf
+systemctl reload-or-restart systemd-resolved
+
+The adguardhome.conf file contains:
+[Resolve]
+DNS=127.0.0.1
+DNSStubListener=no
+
+Now try running the container. If you are still having an issue, try the following:
+
+nano /etc/default/dnsmasq and set ENABLE=0 instead of ENABLE=1
+
+In order to stop the daemon (What we want to do here) either delete /etc/init.d/dnsmasq OR what I prefer to do, is run the command:
+
+/etc/init.d/dnsmasq stop
+
+This should stop the process and you should now be able to run the container without issues.
 
 -----------------
 Mounting a drive:
