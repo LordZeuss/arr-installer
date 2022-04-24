@@ -30,22 +30,21 @@ https://github.com/LordZeuss/raspi-docker
 I am not responsible for how you use these programs, I just wanted to write a script to see if it was possible to do so. Do not download any illegal content.
 
 # Programs Included
+* Portainer   -interface to manage containers (This is an essential)
 * Sonarr      -for TV shows
 * Radarr      -for Movies
 * Jackett     -indexing for Sonarr/Radarr
 * Prowlarr    -indexing for Sonarr/Radarr (Better than Jackett)
 * Readarr     -Like sonarr/radarr but for books
-* Bazarr      -Another Arr program that downloads subtitles
-* Portainer   -interface to manage containers (This is an essential)
-* qBittorrent -Torrent Client
-* Deluge      -Torrent Client
-* Transmission -Torrent Client
-## Extra Programs Included
-* AdGuard     -DNS Adblocker, similar to pi-hole
-* Readarr     -Like sonarr/radarr but for books
-* Bazarr      -Another Arr program that downloads subtitles
+* Bazarr      -Arr program that downloads subtitles
 * Lidarr      -Arr program for music
+## Extra Programs Included
+* AdGuard Home    -DNS Adblocker, similar to pi-hole
 * Heimdall    -A way to view the status on your containers. Isn't a portainer replacement.
+## Torrent Clients Included
+* qBittorrent
+* Deluge
+* Transmission
 ## Media Servers Included
 * Jellyfin
 * Plex
@@ -80,6 +79,10 @@ To run the scripts, run these commands:
 ```
 
 # Modification
+If you would like to change where the docker-compose.yml file is or where the config and other volumes are stored, click the "f" key to fix/change when adding containers to edit these options.
+
+OR
+
 If you need to edit the script, you can do so by running the commands
 
 ```
@@ -159,8 +162,8 @@ https://github.com/LordZeuss/raspi-docker
 ```
 
 # Updates
-I plan on adding a scipt that will have no paths, and will require you to manully edit the paths to your liking. This may make it easier than changing the ones I have setup by default, because I set up the script to go along with my docker install repo.
-  
+I have added the ability to edit the containers volumes and the location of docker-compose, by clicking the "f" key when adding containers.
+
 # Donations
 Feel free to use these scripts as much as you want, edit it as much as you need to, fork them into your own projects, have fun with it! That's the purpose for open source! I just ask that if you use my code for your own projects, that you credit me.
 
