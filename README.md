@@ -3,7 +3,7 @@ This script installs several "Arr" programs. As well as extras that you may find
 
 # General Info
 This project is to assist in setting up programs such as sonarr, radarr, and other "arr" type programs.
-Its a basic bash script that will isntall these into the docker-compose.yml file for you.
+Its a basic bash script that will install these into the docker-compose.yml file for you.
 Feel free to contact me to add more programs to the list!
 
 **This project is scripted to install in the same directory of my docker setup repo, however you will need to change the location of your docker-compose.yml in the script if you are using a different location.**
