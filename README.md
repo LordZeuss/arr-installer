@@ -38,6 +38,7 @@ I am not responsible for how you use these programs, I just wanted to write a sc
 * Readarr     -Like sonarr/radarr but for books
 * Bazarr      -Arr program that downloads subtitles
 * Lidarr      -Arr program for music
+* PodGrab     -Podcast downloader/player
 ## Extra Programs Included
 * AdGuard Home    -DNS Adblocker, similar to pi-hole
 * Heimdall    -A way to view the status on your containers. Isn't a portainer replacement.
