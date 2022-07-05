@@ -1001,6 +1001,73 @@ else
 fi
 
 
+#Podgrab
+
+echo "Would you like to install Podgrab? (y/n/f/e)"
+
+read -n1 yesorno
+
+if [ "$yesorno" = y ]; then
+	mkdir /home/$USER/raspi-docker/podgrab
+    mkdir /home/$USER/raspi-docker/podgrab/config
+    mkdir /home/$USER/raspi-docker/podcasts
+	echo "podgrab:
+    image: akhilrex/podgrab
+    container_name: podgrab
+    environment:
+      - CHECK_FREQUENCY=240
+     # - PASSWORD=password     ## Uncomment to enable basic authentication, username = podgrab
+    volumes:
+      - /home/$USER/raspi-docker/podgrab/config:/config
+      - /home/$USER/raspi-docker/podcasts:/assets
+    ports:
+      - 8080:8080
+    restart: unless-stopped" >> /home/$USER/raspi-docker/docker-compose.yml		#replace /home/$USER/raspi-docker/docker-compose.yml with the location of your docker-compose.yml file
+echo " " >>/home/$USER/raspi-docker/docker-compose.yml #replace this location with the location docker-compose.yml if needed.
+echo "Successfully Added"
+echo " "
+elif [ "$yesorno" = n ]; then
+	echo "Skipping..."
+elif [ "$yesorno" = f ]; then
+        echo " "
+        read -n1 -p "You have selected to change the location/volumes of the container. Would you like to continue? (y/n) " fix
+		if [ "$fix" = y ]; then
+      echo " "
+      read -p "Enter the location of the docker-compose.yml file: " podgrabanswer
+			read -p "Enter the new location for config: " podgrabconfig
+            read -p "Enter the location you want the podcasts to be saved to: " podgrabsave
+			sleep 1
+			echo "podgrab:
+    image: akhilrex/podgrab
+    container_name: podgrab
+    environment:
+      - CHECK_FREQUENCY=240
+     # - PASSWORD=password     ## Uncomment to enable basic authentication, username = podgrab
+    volumes:
+      - $podgrabconfig:/config
+      - $podgrabsave:/assets
+    ports:
+      - 8080:8080
+    restart: unless-stopped" >> $podgrabanswer
+  			echo " " >> $podgrabanswer
+  			echo "Done."
+			echo " "
+		elif [ "$fix" = n ]; then
+			echo "Not adding Podgrab to any file."
+			source arr-installer.sh
+			return
+		else
+			echo "Goodbye!"
+			exit 1
+		fi
+elif [ "$yesorno" = e ]; then
+	echo "Goodbye!"
+	exit 1
+else
+	echo "Not a valid answer. Exiting..."
+	exit 1
+fi
+
 
 #Heimdall
 
@@ -1067,8 +1134,6 @@ else
 	echo "Not a valid answer. Exiting..."
 	exit 1
 fi
-
-
 
 echo " "
 echo "Installer Complete. Run torrent-clients-installer.sh if you would like to install a torrent client as well."
