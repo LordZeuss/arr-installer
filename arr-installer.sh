@@ -103,7 +103,7 @@ if [ "$yesorno" = y ]; then
    - PUID=1000
    - PGID=150
    - TZ=US/Central
-  image: portainer/portainer" >> /home/$USER/raspi-docker/docker-compose.yml		#replace /home/$USER/raspi-docker/docker-compose.yml with the location of your docker-compose.yml file
+  image: portainer/portainer-ce" >> /home/$USER/raspi-docker/docker-compose.yml		#replace /home/$USER/raspi-docker/docker-compose.yml with the location of your docker-compose.yml file
 echo " " >>/home/$USER/raspi-docker/docker-compose.yml #replace this location with the location docker-compose.yml if needed.
 echo "Successfully Added"
 elif [ "$yesorno" = n ]; then
@@ -128,7 +128,7 @@ elif [ "$yesorno" = f ]; then
    - PUID=1000
    - PGID=150
    - TZ=US/Central
-  image: portainer/portainer" >> $answer
+  image: portainer/portainer-ce" >> $answer
   			echo " " >> $answer
 			echo "Done."
 		elif [ "$fix" = n ]; then
