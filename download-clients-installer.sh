@@ -10,7 +10,7 @@ ___  ____ _  _ ____    _ _  _ ____ ___ ____ _    _    ____ ____
  
 "
 
-#This script will install torrent download clients in docker.
+#This script will install download clients in docker.
 
 ######################################################################
 
@@ -25,7 +25,7 @@ echo "This script assumes you have your docker files located in your /home/$USER
 echo "If your folder is located elsewhere, you will need to change the location of your docker-compose files in this script."
 echo "This script follows my other guide of insatlling Docker and Mullvad VPN. Visit https://github.com/LordZeuss/raspi-docker for more info."
 echo " "
-echo "NOTE: With this qbittorrent script, it will default to downloading in the /home/$USER/Downloads folder."
+echo "NOTE: With this script, it will default to downloading in the /home/$USER/Downloads folder."
 echo "NOTE: The config files will default to /home/$USER/raspi-docker/qbittorrent unless otherwise changed in the script."
 echo "I recommend changing the locations of downloads and the config file location if yours is in an alternate location."
 echo " "
@@ -136,7 +136,7 @@ elif [ "$yesorno" = f ]; then
   			echo " "
   		elif [ "$fix" = n ]; then
   			echo "Not adding qBittorrent to any file."
-  			source torrent-client-installer.sh
+  			source download-client-installer.sh
   			return
   		else
   			echo "Goodbye!"
@@ -217,7 +217,7 @@ elif [ "$yesorno" = f ]; then
       echo " "
     elif [ "$fix" = n ]; then
       echo "Not adding Transmission to any file."
-      source torrent-client-installer.sh
+      source download-client-installer.sh
       return
     else
       echo "Goodbye!"
@@ -294,7 +294,7 @@ elif [ "$yesorno" = f ]; then
   			echo " "
   		elif [ "$fix" = n ]; then
   			echo "Not adding Deluge to any file."
-  			source torrent-client-installer.sh
+  			source download-client-installer.sh
   			return
   		else
   			echo "Goodbye!"
@@ -310,6 +310,151 @@ fi
 
 
 ######################################################################
+
+
+#Install nzbget
+
+echo "Would you like install NZBGet? (y/n/f/e)"
+
+read -n1 yesorno
+
+if [ "$yesorno" = y ]; then
+	mkdir /home/$USER/raspi-docker/nzbget
+	mkdir /home/$USER/raspi-docker/nzbget/config
+	echo "nzbget:
+    image: lscr.io/linuxserver/nzbget:latest
+    container_name: nzbget
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=US/Central
+      - NZBGET_USER=admin #optional
+      - NZBGET_PASS=admin #optional
+    volumes:
+      - /home/$USER/raspi-docker/nzbget/config:/config
+      - /home/$USER/raspi-docker/downloads:/downloads #optional
+    ports:
+      - 6789:6789
+    restart: unless-stopped" >> /home/$USER/raspi-docker/docker-compose.yml 	#replace /home/$USER/raspi-docker/docker-compose.yml with the location of your docker-compose.yml file
+	echo " " >> /home/$USER/raspi-docker/docker-compose.yml		#replace /home/$USER/raspi-docker/docker-compose.yml with the location of your docker-compose.yml file
+	echo "Default username & password is admin"
+    echo "Successfully Added"
+elif [ "$yesorno" = n ]; then
+	echo "Skipping..."
+elif [ "$yesorno" = f ]; then
+          echo " "
+          read -n1 -p "You have selected to change the location/volumes of the container. Would you like to coninue? (y/n) " fix
+  		if [ "$fix" = y ]; then
+        echo " "
+        read -p "Enter the location of the docker-compose.yml file: " nzbgetanswer
+  		read -p "Enter the new location for config: " nzbgetconfig
+        read -p "Enter the new location for downloads: " nzbgetdown
+        read -p "Enter the login user-name: " nzbgetlogin
+        read -p "Enter the login password: " nzbgetpass
+  			sleep 1
+  			echo "nzbget:
+    image: lscr.io/linuxserver/nzbget:latest
+    container_name: nzbget
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=US/Central
+      - NZBGET_USER=$nzbgetlogin #optional
+      - NZBGET_PASS=$nzbgetpass #optional
+    volumes:
+      - $nzbgetconfig:/config
+      - $nzbgetdown:/downloads #optional
+    ports:
+      - 6789:6789
+    restart: unless-stopped" >> $nzbgetanswer
+    			echo " " >> $nzbgetanswer
+    			echo "Done."
+  			echo " "
+  		elif [ "$fix" = n ]; then
+  			echo "Not adding NZBGet to any file."
+  			source download-client-installer.sh
+  			return
+  		else
+  			echo "Goodbye!"
+  			exit 1
+  		fi
+elif [ "$yesorno" = e ]; then
+	echo "Goodbye!"
+	exit 1
+else
+	echo "Not a valid answer. Exiting..."
+	exit 1
+fi
+
+
+
+#Install sabnzbd
+
+echo "Would you like install SABnzbd? (y/n/f/e)"
+
+read -n1 yesorno
+
+if [ "$yesorno" = y ]; then
+	mkdir /home/$USER/raspi-docker/sabnzbd
+	mkdir /home/$USER/raspi-docker/sabnzbd/config
+	echo "sabnzbd:
+    image: lscr.io/linuxserver/sabnzbd:latest
+    container_name: sabnzbd
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=US/Central
+    volumes:
+      - /home/$USER/raspi-docker/sabnzbd/config:/config
+      - /home/$USER/raspi-docker/downloads:/downloads #optional
+    ports:
+      - 8080:8080
+    restart: unless-stopped" >> /home/$USER/raspi-docker/docker-compose.yml 	#replace /home/$USER/raspi-docker/docker-compose.yml with the location of your docker-compose.yml file
+	echo " " >> /home/$USER/raspi-docker/docker-compose.yml		#replace /home/$USER/raspi-docker/docker-compose.yml with the location of your docker-compose.yml file
+    echo "Successfully Added"
+elif [ "$yesorno" = n ]; then
+	echo "Skipping..."
+elif [ "$yesorno" = f ]; then
+          echo " "
+          read -n1 -p "You have selected to change the location/volumes of the container. Would you like to coninue? (y/n) " fix
+  		if [ "$fix" = y ]; then
+        echo " "
+        read -p "Enter the location of the docker-compose.yml file: " sabanswer
+  		read -p "Enter the new location for config: " sabconfig
+        read -p "Enter the new location for downloads: " sabdown
+  			sleep 1
+  			echo "sabnzbd:
+    image: lscr.io/linuxserver/sabnzbd:latest
+    container_name: sabnzbd
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=US/Central
+    volumes:
+      - $sabconfig:/config
+      - $sabdown:/downloads #optional
+    ports:
+      - 8080:8080
+    restart: unless-stopped" >> $sabanswer
+    			echo " " >> $sabanswer
+    			echo "Done."
+  			echo " "
+  		elif [ "$fix" = n ]; then
+  			echo "Not adding SABnzbd to any file."
+  			source download-client-installer.sh
+  			return
+  		else
+  			echo "Goodbye!"
+  			exit 1
+  		fi
+elif [ "$yesorno" = e ]; then
+	echo "Goodbye!"
+	exit 1
+else
+	echo "Not a valid answer. Exiting..."
+	exit 1
+fi
+
 
 echo " "
 echo " "
