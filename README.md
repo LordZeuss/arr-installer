@@ -1,5 +1,5 @@
 # arr-installer
-This script installs several "Arr" programs. As well as extras that you may find useful. Things such as Sonarr/Radarr/Bazarr etc.
+This script installs several "Arr" programs. As well as extras that you may find useful. Things such as Sonarr/Radarr/Bazarr etc. I have also included useful containers, such as nzb/torrent download containers, media players, and a few extras.
 
 # General Info
 This project is to assist in setting up programs such as sonarr, radarr, and other "arr" type programs.
