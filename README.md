@@ -10,6 +10,8 @@ Feel free to contact me to add more programs to the list!
 
 To install Docker and Mullvad VPN, check out my other repo, which this one coordinates with.
 
+Recently added NZB Clients!
+
 ```
 https://github.com/LordZeuss/raspi-docker
 ```
@@ -46,6 +48,9 @@ I am not responsible for how you use these programs, I just wanted to write a sc
 * qBittorrent
 * Deluge
 * Transmission
+## NZB Clients Included
+* SABnzbd
+* NZBGet
 ## Media Servers Included
 * Jellyfin
 * Plex
