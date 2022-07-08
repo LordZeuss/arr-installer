@@ -10,7 +10,7 @@ ___  ____ _  _ ____    _ _  _ ____ ___ ____ _    _    ____ ____
  
 "
 
-#This script will install qbittorrent.
+#This script will install torrent download clients in docker.
 
 ######################################################################
 
