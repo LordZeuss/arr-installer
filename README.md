@@ -81,7 +81,7 @@ To run the scripts, run these commands:
 
 ```
 ./arr-installer.sh
-./torrent-client-installer.sh
+./download-client-installer.sh
 ```
 
 # Modification
@@ -92,8 +92,8 @@ OR
 If you need to edit the script, you can do so by running the commands
 
 ```
+nano download-client-installer.sh
 nano arr-installer.sh
-nano torrent-client-installer.sh
 ```
 
 Things you may want to change:
