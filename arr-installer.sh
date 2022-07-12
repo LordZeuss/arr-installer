@@ -114,6 +114,7 @@ echo " " >>/home/$USER/raspi-docker/docker-compose.yml #replace this location wi
 echo " "
 echo "Successfully Added"
 elif [ "$yesorno" = n ]; then
+	echo " "
 	echo "Skipping..."
 elif [ "$yesorno" = f ]; then
         echo " "
