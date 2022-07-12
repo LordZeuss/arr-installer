@@ -559,6 +559,7 @@ read -n1 yesorno
 if [ "$yesorno" = y ]; then
  mkdir /home/$USER/raspi-docker/plex
  mkdir /home/$USER/raspi-docker/plex/config
+ echo " "
  read -p "Enter your Plex Claim Token: " plextoken
   sudo docker run \
 -d \
