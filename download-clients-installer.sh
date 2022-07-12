@@ -105,8 +105,10 @@ if [ "$yesorno" = y ]; then
       - /home/$USER/raspi-docker/downloads:/downloads
     restart: unless-stopped" >> /home/$USER/raspi-docker/docker-compose.yml 	#replace /home/$USER/raspi-docker/docker-compose.yml with the location of your docker-compose.yml file
 	echo " " >> /home/$USER/raspi-docker/docker-compose.yml		#replace /home/$USER/raspi-docker/docker-compose.yml with the location of your docker-compose.yml file
+	echo " "
 	echo "Successfully Added"
 elif [ "$yesorno" = n ]; then
+	echo " "
 	echo "Skipping..."
 elif [ "$yesorno" = f ]; then
           echo " "
@@ -132,20 +134,25 @@ elif [ "$yesorno" = f ]; then
             - $qbitdl:/downloads
           restart: unless-stopped" >> $qbitanswer
     			echo " " >> $qbitanswer
-    			echo "Done."
+    			echo " "
+			echo "Done."
   			echo " "
   		elif [ "$fix" = n ]; then
-  			echo "Not adding qBittorrent to any file."
+  			echo " "
+			echo "Not adding qBittorrent to any file."
   			source download-client-installer.sh
   			return
   		else
-  			echo "Goodbye!"
+  			echo " "
+			echo "Goodbye!"
   			exit 1
   		fi
 elif [ "$yesorno" = e ]; then
+	echo " "
 	echo "Goodbye!"
 	exit 1
 else
+	echo " "
 	echo "Not a valid answer. Exiting..."
 	exit 1
 fi
@@ -180,8 +187,10 @@ if [ "$yesorno" = y ]; then
       - 51413:51413/udp
     restart: unless-stopped" >> /home/$USER/raspi-docker/docker-compose.yml 	#replace /home/$USER/raspi-docker/docker-compose.yml with the location of your docker-compose.yml file
 	echo " " >> /home/$USER/raspi-docker/docker-compose.yml		#replace /home/$USER/raspi-docker/docker-compose.yml with the location of your docker-compose.yml file
+	echo " "
 	echo "Successfully Added"
 elif [ "$yesorno" = n ]; then
+	echo " "
 	echo "Skipping..."
 elif [ "$yesorno" = f ]; then
         echo " "
@@ -212,21 +221,26 @@ elif [ "$yesorno" = f ]; then
           - 51413:51413/udp
         restart: unless-stopped" >> $transmissionanswer
         echo " " >> $transmissionanswer
-        echo "Done."
+        echo " "
+	echo "Done."
         echo "To add a username and password, edit the docker-config.yml file after adding. Disabled by default."
-      echo " "
+        echo " "
     elif [ "$fix" = n ]; then
+      echo " "
       echo "Not adding Transmission to any file."
       source download-client-installer.sh
       return
     else
-      echo "Goodbye!"
+     echo " "
+     echo "Goodbye!"
       exit 1
     fi
 elif [ "$yesorno" = e ]; then
+	echo " "
 	echo "Goodbye!"
 	exit 1
 else
+	echo " "
 	echo "Not a valid answer. Exiting..."
 	exit 1
 fi
@@ -260,8 +274,10 @@ if [ "$yesorno" = y ]; then
       - 58846:58846
       - 58946:58946" >> /home/$USER/raspi-docker/docker-compose.yml 	#replace /home/$USER/raspi-docker/docker-compose.yml with the location of your docker-compose.yml file
 	echo " " >> /home/$USER/raspi-docker/docker-compose.yml		#replace /home/$USER/raspi-docker/docker-compose.yml with the location of your docker-compose.yml file
+	echo " "
 	echo "Successfully Added"
 elif [ "$yesorno" = n ]; then
+	echo " "
 	echo "Skipping..."
 elif [ "$yesorno" = f ]; then
           echo " "
@@ -290,20 +306,25 @@ elif [ "$yesorno" = f ]; then
             - 58846:58846
             - 58946:58946" >> $delugeanswer
     			echo " " >> $delugeanswer
-    			echo "Done."
+    			echo " "
+			echo "Done."
   			echo " "
   		elif [ "$fix" = n ]; then
-  			echo "Not adding Deluge to any file."
+  			echo " "
+			echo "Not adding Deluge to any file."
   			source download-client-installer.sh
   			return
   		else
-  			echo "Goodbye!"
+  			echo " "
+			echo "Goodbye!"
   			exit 1
   		fi
 elif [ "$yesorno" = e ]; then
+	echo " "
 	echo "Goodbye!"
 	exit 1
 else
+	echo " "
 	echo "Not a valid answer. Exiting..."
 	exit 1
 fi
@@ -337,9 +358,12 @@ if [ "$yesorno" = y ]; then
       - 6789:6789
     restart: unless-stopped" >> /home/$USER/raspi-docker/docker-compose.yml 	#replace /home/$USER/raspi-docker/docker-compose.yml with the location of your docker-compose.yml file
 	echo " " >> /home/$USER/raspi-docker/docker-compose.yml		#replace /home/$USER/raspi-docker/docker-compose.yml with the location of your docker-compose.yml file
+	echo " "
 	echo "Default username & password is admin"
-    echo "Successfully Added"
+        echo " "
+	echo "Successfully Added"
 elif [ "$yesorno" = n ]; then
+	echo " "
 	echo "Skipping..."
 elif [ "$yesorno" = f ]; then
           echo " "
@@ -368,20 +392,25 @@ elif [ "$yesorno" = f ]; then
       - 6789:6789
     restart: unless-stopped" >> $nzbgetanswer
     			echo " " >> $nzbgetanswer
-    			echo "Done."
+    			echo " "
+			echo "Done."
   			echo " "
   		elif [ "$fix" = n ]; then
-  			echo "Not adding NZBGet to any file."
+  			echo " "
+			echo "Not adding NZBGet to any file."
   			source download-client-installer.sh
   			return
   		else
-  			echo "Goodbye!"
+  			echo " "
+			echo "Goodbye!"
   			exit 1
   		fi
 elif [ "$yesorno" = e ]; then
+	echo " "
 	echo "Goodbye!"
 	exit 1
 else
+	echo " "
 	echo "Not a valid answer. Exiting..."
 	exit 1
 fi
@@ -411,8 +440,10 @@ if [ "$yesorno" = y ]; then
       - 8080:8080
     restart: unless-stopped" >> /home/$USER/raspi-docker/docker-compose.yml 	#replace /home/$USER/raspi-docker/docker-compose.yml with the location of your docker-compose.yml file
 	echo " " >> /home/$USER/raspi-docker/docker-compose.yml		#replace /home/$USER/raspi-docker/docker-compose.yml with the location of your docker-compose.yml file
+    echo " "
     echo "Successfully Added"
 elif [ "$yesorno" = n ]; then
+	echo " "
 	echo "Skipping..."
 elif [ "$yesorno" = f ]; then
           echo " "
@@ -437,23 +468,30 @@ elif [ "$yesorno" = f ]; then
       - 8080:8080
     restart: unless-stopped" >> $sabanswer
     			echo " " >> $sabanswer
-    			echo "Done."
+    			echo " "
+			echo "Done."
   			echo " "
   		elif [ "$fix" = n ]; then
-  			echo "Not adding SABnzbd to any file."
+  			echo " "
+			echo "Not adding SABnzbd to any file."
   			source download-client-installer.sh
   			return
   		else
-  			echo "Goodbye!"
+  			echo " "
+			echo "Goodbye!"
   			exit 1
   		fi
 elif [ "$yesorno" = e ]; then
+	echo " "
 	echo "Goodbye!"
 	exit 1
 else
+	echo " "
 	echo "Not a valid answer. Exiting..."
 	exit 1
 fi
+
+
 
 
 echo " "
