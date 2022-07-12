@@ -45,12 +45,15 @@ if [ "$yesorno" = y ]; then
 	echo "Update Successful."
 	echo " "
 elif [ "$yesorno" = n ]; then
+	echo " "
 	echo "Skipping..."
 	echo " "
 elif [ "$yesorno" = e ]; then
+	echo " "
 	echo "Goodbye!"
 	exit 1
 else
+	echo " "
 	echo "Not a valid answer. Exiting..."
 	exit 1
 fi
@@ -73,11 +76,14 @@ if [ "$yesorno" = y ]; then
 	echo "Docker-Compose build unknown is not an error"
 	echo " "
 elif [ "$yesorno" = n ]; then
+	echo " "
 	echo "Skipping..."
 elif [ "$yesorno" = e ]; then
+	echo " "
 	echo "Goodbye!"
 	exit 1
 else
+	echo " "
 	echo "Not a valid answer. Exiting..."
 	exit 1
 fi
@@ -105,6 +111,7 @@ if [ "$yesorno" = y ]; then
    - TZ=US/Central
   image: portainer/portainer-ce" >> /home/$USER/raspi-docker/docker-compose.yml		#replace /home/$USER/raspi-docker/docker-compose.yml with the location of your docker-compose.yml file
 echo " " >>/home/$USER/raspi-docker/docker-compose.yml #replace this location with the location docker-compose.yml if needed.
+echo " "
 echo "Successfully Added"
 elif [ "$yesorno" = n ]; then
 	echo "Skipping..."
@@ -130,19 +137,24 @@ elif [ "$yesorno" = f ]; then
    - TZ=US/Central
   image: portainer/portainer-ce" >> $answer
   			echo " " >> $answer
+			echo " "
 			echo "Done."
 		elif [ "$fix" = n ]; then
+			echo " "
 			echo "Not adding Portainer to any file."
 			source arr-installer.sh
 			return
 		else
+			echo " "
 			echo "Goodbye!"
 			exit 1
 		fi
 elif [ "$yesorno" = e ]; then
+	echo " "
 	echo "Goodbye!"
 	exit 1
 else
+	echo " "
 	echo "Not a valid answer. Exiting..."
 	exit 1
 fi
@@ -174,10 +186,13 @@ if [ "$yesorno" = y ]; then
    - TZ=US/Central
   image: linuxserver/sonarr" >> /home/$USER/raspi-docker/docker-compose.yml		#replace /home/$USER/raspi-docker/docker-compose.yml with the location of your docker-compose.yml file
 echo " " >>/home/$USER/raspi-docker/docker-compose.yml #replace this location with the location docker-compose.yml if needed.
+echo " "
 echo "Successfully Added"
 elif [ "$yesorno" = n ]; then
+	echo " "
 	echo "Skipping..."
 elif [ "$yesorno" = e ]; then
+	echo " "
 	echo "Goodbye!"
 	exit 1
 elif [ "$yesorno" = f ]; then
@@ -207,14 +222,17 @@ elif [ "$yesorno" = f ]; then
   			echo " " >> $sonarranswer
 
 		elif [ "$fix" = n ]; then
+			echo " "
 			echo "Not adding Sonarr to any file."
 			source arr-installer.sh
 			return
 		else
+			echo " "
 			echo "Goodbye!"
 			exit 1
 		fi
 else
+	echo " "
 	echo "Not a valid answer. Exiting..."
 	exit 1
 fi
@@ -246,8 +264,10 @@ if [ "$yesorno" = y ]; then
       - 7878:7878
     restart: unless-stopped" >> /home/$USER/raspi-docker/docker-compose.yml 		#replace /home/$USER/raspi-docker/docker-compose.yml with the location of your docker-compose.yml file
 echo " " >>/home/$USER/raspi-docker/docker-compose.yml #replace this location with the location docker-compose.yml if needed.
+echo " "
 echo "Successfully Added"
 elif [ "$yesorno" = n ]; then
+	echo " "
 	echo "Skipping..."
 elif [ "$yesorno" = f ]; then
         echo " "
@@ -273,20 +293,25 @@ elif [ "$yesorno" = f ]; then
       - 7878:7878
     restart: unless-stopped" >> $radarranswer
   			echo " " >> $radarranswer
-  			echo "Done."
+  			echo " "
+			echo "Done."
 			echo " "
 		elif [ "$fix" = n ]; then
+			echo " "
 			echo "Not adding Radarr to any file."
 			source arr-installer.sh
 			return
 		else
+			echo " "
 			echo "Goodbye!"
 			exit 1
 		fi
 elif [ "$yesorno" = e ]; then
+	echo " "
 	echo "Goodbye!"
 	exit 1
 else
+	echo " "
 	echo "Not a valid answer. Exiting..."
 	exit 1
 fi
@@ -315,8 +340,10 @@ if [ "$yesorno" = y ]; then
       - 9696:9696
     restart: unless-stopped" >> /home/$USER/raspi-docker/docker-compose.yml 	#replace /home/$USER/raspi-docker/docker-compose.yml with the location of your docker-compose.yml file
 	echo " " >> /home/$USER/raspi-docker/docker-compose.yml		#replace /home/$USER/raspi-docker/docker-compose.yml with the location of your docker-compose.yml file
+	echo " "
 	echo "Successfully Added"
 elif [ "$yesorno" = n ]; then
+	echo " "
 	echo "Skipping..."
 elif [ "$yesorno" = f ]; then
         echo " "
@@ -339,20 +366,25 @@ elif [ "$yesorno" = f ]; then
           - 9696:9696
         restart: unless-stopped" >> $prowlarranswer
         echo " " >> $prowlarranswer
-        echo "Done."
-      echo " "
+        echo " "
+	echo "Done."
+        echo " "
     elif [ "$fix" = n ]; then
+      echo " "
       echo "Not adding Prowlarr to any file."
       source arr-installer
       return
     else
+      echo " "
       echo "Goodbye!"
       exit 1
     fi
 elif [ "$yesorno" = e ]; then
+	echo " "
 	echo "Goodbye!"
 	exit 1
 else
+	echo " "
 	echo "Not a valid answer. Exiting..."
 	exit 1
 fi
@@ -379,8 +411,10 @@ if [ "$yesorno" = y ]; then
    - TZ=US/Central
   image: linuxserver/jackett" >> /home/$USER/raspi-docker/docker-compose.yml 		#replace /home/$USER/raspi-docker/docker-compose.yml with the location of your docker-compose.yml file
 echo " " >>/home/$USER/raspi-docker/docker-compose.yml #replace this location with the location docker-compose.yml if needed.
+echo " "
 echo "Successfully Added"
 elif [ "$yesorno" = n ]; then
+	echo " "
 	echo "Skipping..."
 elif [ "$yesorno" = f ]; then
     echo " "
@@ -403,20 +437,25 @@ elif [ "$yesorno" = f ]; then
    - TZ=US/Central
   image: linuxserver/jackett" >> $jackettanswer
   			echo " " >> $jackettanswer
-  			echo "Done."
+  			echo " "
+			echo "Done."
 			echo " "
 		elif [ "$fix" = n ]; then
+			echo " "
 			echo "Not adding Jackett to any file."
 			source arr-installer.sh
 			return
 		else
+			echo " "
 			echo "Goodbye!"
 			exit 1
 		fi
 elif [ "$yesorno" = e ]; then
+	echo " "
 	echo "Goodbye!"
 	exit 1
 else
+	echo " "
 	echo "Not a valid answer. Exiting..."
 	exit 1
 fi
@@ -451,8 +490,10 @@ if [ "$yesorno" = y ]; then
       - 1900:1900/udp #optional
     restart: unless-stopped" >> /home/$USER/raspi-docker/docker-compose.yml 	#replace /home/$USER/raspi-docker/docker-compose.yml with the location of your docker-compose.yml file
 	echo " " >> /home/$USER/raspi-docker/docker-compose.yml		#replace /home/$USER/raspi-docker/docker-compose.yml with the location of your docker-compose.yml file
+	echo " "
 	echo "Successfully Added"
 elif [ "$yesorno" = n ]; then
+	echo " "
 	echo "Skipping..."
 elif [ "$yesorno" = f ]; then
         echo " "
@@ -484,20 +525,25 @@ elif [ "$yesorno" = f ]; then
           - 1900:1900/udp #optional
         restart: unless-stopped" >> $jellyanswer
         echo " " >> $jellyanswer
-        echo "Done."
-      echo " "
+        echo " "
+	echo "Done."
+        echo " "
     elif [ "$fix" = n ]; then
+      echo " "
       echo "Not adding Jellyfin Media Server to any file."
       source arr-installer.sh
       return
     else
+      echo " "
       echo "Goodbye!"
       exit 1
     fi
 elif [ "$yesorno" = e ]; then
+	echo " "
 	echo "Goodbye!"
 	exit 1
 else
+	echo " "
 	echo "Not a valid answer. Exiting..."
 	exit 1
 fi
@@ -524,6 +570,7 @@ if [ "$yesorno" = y ]; then
 -v /home/$USER/raspi-docker/downloads/tv:/tv \
 plexinc/pms-docker:plexpass
 elif [ "$yesorno" = n ]; then
+ echo " "
  echo "Skipping..."
 elif [ "$yesorno" = f ]; then
         echo " "
@@ -545,17 +592,21 @@ elif [ "$yesorno" = f ]; then
   -v $plextv:/tv \
   plexinc/pms-docker:plexpass
    elif [ "$fix" = n ]; then
+     echo " "
      echo "Not adding Plex."
      source arr-installer.sh
      return
    else
+     echo " "
      echo "Goodbye!"
      exit 1
    fi
 elif [ "$yesorno" = e ]; then
+ echo " "
  echo "Goodbye!"
  exit 1
 else
+ echo " "
  echo "Not a valid answer. Exiting..."
  exit 1
 fi
@@ -588,9 +639,11 @@ if [ "$yesorno" = y ]; then
       - 8920:8920 #optional
     restart: unless-stopped" >> /home/$USER/raspi-docker/docker-compose.yml		#replace /home/$USER/raspi-docker/docker-compose.yml with the location of your docker-compose.yml file
 echo " " >>/home/$USER/raspi-docker/docker-compose.yml #replace this location with the location docker-compose.yml if needed.
+echo " "
 echo "Successfully Added"
 echo " "
 elif [ "$yesorno" = n ]; then
+	echo " "
 	echo "Skipping..."
 elif [ "$yesorno" = f ]; then
     echo " "
@@ -619,20 +672,25 @@ elif [ "$yesorno" = f ]; then
       - 8920:8920 #optional
     restart: unless-stopped" >> $embyanswer
   			echo " " >> $embyanswer
-  			echo "Done."
+  			echo " "
+			echo "Done."
 			echo " "
 		elif [ "$fix" = n ]; then
+			echo " "
 			echo "Not adding Emby to any file."
 			source arr-installer.sh
 			return
 		else
+			echo " "
 			echo "Goodbye!"
 			exit 1
 		fi
 elif [ "$yesorno" = e ]; then
+	echo " "
 	echo "Goodbye!"
 	exit 1
 else
+	echo " "
 	echo "Not a valid answer. Exiting..."
 	exit 1
 fi
@@ -663,12 +721,14 @@ if [ "$yesorno" = y ]; then
       - ./confdir:/opt/adguardhome/conf
     restart: unless-stopped" >> /home/$USER/raspi-docker/docker-compose.yml		#replace /home/$USER/raspi-docker/docker-compose.yml with the location of your docker-compose.yml file
 echo " " >>/home/$USER/raspi-docker/docker-compose.yml #replace this location with the location docker-compose.yml if needed.
+echo " "
 echo "Successfully Added"
 echo " "
 echo "Add - 67:67/udp -p 68:68/tcp -p 68:68/udp to use AdGuard as DHCP Server."
 echo "Find on port 3000. IP:3000"
 echo " "
 elif [ "$yesorno" = n ]; then
+	echo " "
 	echo "Skipping..."
 elif [ "$yesorno" = f ]; then
     echo " "
@@ -693,20 +753,25 @@ elif [ "$yesorno" = f ]; then
       - ./confdir:/opt/adguardhome/conf
     restart: unless-stopped" >> $adguardanswer
   			echo " " >> $adguardanswer
-  			echo "Done."
+  			echo " "
+			echo "Done."
 			echo " "
 		elif [ "$fix" = n ]; then
+			echo " "
 			echo "Not adding Adguard Home to any file."
 			source arr-installer.sh
 			return
 		else
+			echo " "
 			echo "Goodbye!"
 			exit 1
 		fi
 elif [ "$yesorno" = e ]; then
+	echo " "
 	echo "Goodbye!"
 	exit 1
 else
+	echo " "
 	echo "Not a valid answer. Exiting..."
 	exit 1
 fi
@@ -737,11 +802,13 @@ if [ "$yesorno" = y ]; then
       - 8787:8787
     restart: unless-stopped" >> /home/$USER/raspi-docker/docker-compose.yml		#replace /home/$USER/raspi-docker/docker-compose.yml with the location of your docker-compose.yml file
 echo " " >>/home/$USER/raspi-docker/docker-compose.yml #replace this location with the location docker-compose.yml if needed.
+echo " "
 echo "Successfully Added"
 echo " "
 echo "Don't forget to add the path to your books and or download client!"
 echo " "
 elif [ "$yesorno" = n ]; then
+	echo " "
 	echo "Skipping..."
 elif [ "$yesorno" = f ]; then
         echo " "
@@ -768,20 +835,25 @@ elif [ "$yesorno" = f ]; then
       - 8787:8787
     restart: unless-stopped" >> $readarranswer
   			echo " " >> $readarranswer
-  			echo "Done."
+  			echo " "
+			echo "Done."
 			echo " "
 		elif [ "$fix" = n ]; then
+			echo " "
 			echo "Not adding Readarr to any file."
 			source arr-installer.sh
 			return
 		else
+			echo " "
 			echo "Goodbye!"
 			exit 1
 		fi
 elif [ "$yesorno" = e ]; then
+	echo " "
 	echo "Goodbye!"
 	exit 1
 else
+	echo " "
 	echo "Not a valid answer. Exiting..."
 	exit 1
 fi
@@ -812,11 +884,13 @@ if [ "$yesorno" = y ]; then
       - 6767:6767
     restart: unless-stopped" >> /home/$USER/raspi-docker/docker-compose.yml		#replace /home/$USER/raspi-docker/docker-compose.yml with the location of your docker-compose.yml file
 echo " " >>/home/$USER/raspi-docker/docker-compose.yml #replace this location with the location docker-compose.yml if needed.
+echo " "
 echo "Successfully Added"
 echo " "
 echo "Don't forget to add the path to your movies and tv shows!"
 echo " "
 elif [ "$yesorno" = n ]; then
+	echo " "
 	echo "Skipping..."
 elif [ "$yesorno" = f ]; then
         echo " "
@@ -843,20 +917,25 @@ elif [ "$yesorno" = f ]; then
       - 6767:6767
     restart: unless-stopped" >> $bazarranswer
   			echo " " >> $bazarranswer
-  			echo "Done."
+  			echo " "
+			echo "Done."
 			echo " "
 		elif [ "$fix" = n ]; then
+			echo " "
 			echo "Not adding Bazarr to any file."
 			source arr-installer.sh
 			return
 		else
+			echo " "
 			echo "Goodbye!"
 			exit 1
 		fi
 elif [ "$yesorno" = e ]; then
+	echo " "
 	echo "Goodbye!"
 	exit 1
 else
+	echo " "
 	echo "Not a valid answer. Exiting..."
 	exit 1
 fi
@@ -884,15 +963,17 @@ if [ "$yesorno" = y ]; then
       - /home/$USER/raspi-docker/overseerr/config:/app/config
     restart: unless-stopped" >> /home/$USER/raspi-docker/docker-compose.yml		#replace /home/$USER/raspi-docker/docker-compose.yml with the location of your docker-compose.yml file
 echo " " >>/home/$USER/raspi-docker/docker-compose.yml #replace this location with the location docker-compose.yml if needed.
+echo " "
 echo "Successfully Added"
 echo " "
 elif [ "$yesorno" = n ]; then
+	echo " "
 	echo "Skipping..."
 elif [ "$yesorno" = f ]; then
         echo " "
         read -n1 -p "You have selected to change the location/volumes of the container. Would you like to continue? (y/n) " fix
 		if [ "$fix" = y ]; then
-      echo " "
+        echo " "
     	read -p "Enter the location of the docker-compose.yml file: " overanswer
 			read -p "Enter the new location for config: " overconfig
 			sleep 1
@@ -908,20 +989,25 @@ elif [ "$yesorno" = f ]; then
       - $overconfig:/app/config
     restart: unless-stopped" >> $overanswer
   			echo " " >> $overanswer
-  			echo "Done."
+  			echo " "
+			echo "Done."
 			echo " "
 		elif [ "$fix" = n ]; then
+			echo " "
 			echo "Not adding Overseerr to any file."
 			source arr-installer.sh
 			return
 		else
+			echo " "
 			echo "Goodbye!"
 			exit 1
 		fi
 elif [ "$yesorno" = e ]; then
+	echo " "
 	echo "Goodbye!"
 	exit 1
 else
+	echo " "
 	echo "Not a valid answer. Exiting..."
 	exit 1
 fi
@@ -953,8 +1039,10 @@ if [ "$yesorno" = y ]; then
       - 8686:8686
     restart: unless-stopped" >> /home/$USER/raspi-docker/docker-compose.yml		#replace /home/$USER/raspi-docker/docker-compose.yml with the location of your docker-compose.yml file
 echo " " >>/home/$USER/raspi-docker/docker-compose.yml #replace this location with the location docker-compose.yml if needed.
+echo " "
 echo "Successfully Added"
 elif [ "$yesorno" = n ]; then
+	echo " "
 	echo "Skipping..."
 elif [ "$yesorno" = f ]; then
         echo " "
@@ -982,20 +1070,25 @@ elif [ "$yesorno" = f ]; then
       - 8686:8686
     restart: unless-stopped" >> $lidarranswer
   			echo " " >> $lidarranswer
-  			echo "Done."
+  			echo " "
+			echo "Done."
 			echo " "
 		elif [ "$fix" = n ]; then
+			echo " "
 			echo "Not adding Lidarr to any file."
 			source arr-installer.sh
 			return
 		else
+			echo " "
 			echo "Goodbye!"
 			exit 1
 		fi
 elif [ "$yesorno" = e ]; then
+	echo " "
 	echo "Goodbye!"
 	exit 1
 else
+	echo " "
 	echo "Not a valid answer. Exiting..."
 	exit 1
 fi
@@ -1024,9 +1117,11 @@ if [ "$yesorno" = y ]; then
       - 8080:8080
     restart: unless-stopped" >> /home/$USER/raspi-docker/docker-compose.yml		#replace /home/$USER/raspi-docker/docker-compose.yml with the location of your docker-compose.yml file
 echo " " >>/home/$USER/raspi-docker/docker-compose.yml #replace this location with the location docker-compose.yml if needed.
+echo " "
 echo "Successfully Added"
 echo " "
 elif [ "$yesorno" = n ]; then
+	echo " "
 	echo "Skipping..."
 elif [ "$yesorno" = f ]; then
         echo " "
@@ -1050,20 +1145,25 @@ elif [ "$yesorno" = f ]; then
       - 8080:8080
     restart: unless-stopped" >> $podgrabanswer
   			echo " " >> $podgrabanswer
-  			echo "Done."
+  			echo " "
+			echo "Done."
 			echo " "
 		elif [ "$fix" = n ]; then
+			echo " "
 			echo "Not adding Podgrab to any file."
 			source arr-installer.sh
 			return
 		else
+			echo " "
 			echo "Goodbye!"
 			exit 1
 		fi
 elif [ "$yesorno" = e ]; then
+	echo " "
 	echo "Goodbye!"
 	exit 1
 else
+	echo " "
 	echo "Not a valid answer. Exiting..."
 	exit 1
 fi
@@ -1091,9 +1191,11 @@ if [ "$yesorno" = y ]; then
       - 443:443
     restart: unless-stopped" >> /home/$USER/raspi-docker/docker-compose.yml		#replace /home/$USER/raspi-docker/docker-compose.yml with the location of your docker-compose.yml file
 echo " " >>/home/$USER/raspi-docker/docker-compose.yml #replace this location with the location docker-compose.yml if needed.
+echo " "
 echo "Successfully Added"
 echo " "
 elif [ "$yesorno" = n ]; then
+	echo " "
 	echo "Skipping..."
 elif [ "$yesorno" = f ]; then
         echo " "
@@ -1117,24 +1219,31 @@ elif [ "$yesorno" = f ]; then
       - 443:443
     restart: unless-stopped" >> $heimdallanswer
   			echo " " >> $heimdallanswer
-  			echo "Done."
+  			echo " "
+			echo "Done."
 			echo " "
 		elif [ "$fix" = n ]; then
+			echo " "
 			echo "Not adding Heimdall to any file."
 			source arr-installer.sh
 			return
 		else
+			echo " "
 			echo "Goodbye!"
 			exit 1
 		fi
 elif [ "$yesorno" = e ]; then
+	echo " "
 	echo "Goodbye!"
 	exit 1
 else
+	echo " "
 	echo "Not a valid answer. Exiting..."
 	exit 1
 fi
 
+
+echo " "
 echo " "
 echo "Installer Complete. Run torrent-clients-installer.sh if you would like to install a torrent client as well."
 echo " "
