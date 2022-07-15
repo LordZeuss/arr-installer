@@ -663,7 +663,7 @@ elif [ "$yesorno" = f ]; then
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=Europe/London
+      - TZ=US/Central
     volumes:
       - $embyconfig:/config
       - $embytv:/data/tvshows
@@ -793,8 +793,8 @@ if [ "$yesorno" = y ]; then
     image: lscr.io/linuxserver/readarr:develop
     container_name: readarr
     environment:
-      - PUID=${PUID}
-      - PGID=${PGID}
+      - PUID=1000
+      - PGID=1000
       - TZ=US/Central
     volumes:
       - /home/$USER/raspi-docker/readarr/config:/config
@@ -826,8 +826,8 @@ elif [ "$yesorno" = f ]; then
     image: lscr.io/linuxserver/readarr:develop
     container_name: readarr
     environment:
-      - PUID=${PUID}
-      - PGID=${PGID}
+      - PUID=1000
+      - PGID=1000
       - TZ=US/Central
     volumes:
       - $rrconfig:/config
@@ -875,8 +875,8 @@ if [ "$yesorno" = y ]; then
     image: lscr.io/linuxserver/bazarr
     container_name: bazarr
     environment:
-      - PUID=${PUID}
-      - PGID=${PGID}
+      - PUID=1000
+      - PGID=1000
       - TZ=US/Central
     volumes:
       - /home/$USER/raspi-docker/bazarr/config:/config
@@ -908,8 +908,8 @@ elif [ "$yesorno" = f ]; then
     image: lscr.io/linuxserver/bazarr
     container_name: bazarr
     environment:
-      - PUID=${PUID}
-      - PGID=${PGID}
+      - PUID=1000
+      - PGID=1000
       - TZ=US/Central
     volumes:
       - $brconfig:/config
@@ -1183,8 +1183,8 @@ if [ "$yesorno" = y ]; then
     image: lscr.io/linuxserver/heimdall
     container_name: heimdall
     environment:
-      - PUID=${PUID}
-      - PGID=${PGID}
+      - PUID=1000
+      - PGID=1000
       - TZ=US/Central
     volumes:
       - /home/$USER/raspi-docker/heimdall:/config
@@ -1211,8 +1211,8 @@ elif [ "$yesorno" = f ]; then
     image: lscr.io/linuxserver/heimdall
     container_name: heimdall
     environment:
-      - PUID=${PUID}
-      - PGID=${PGID}
+      - PUID=1000
+      - PGID=1000
       - TZ=US/Central
     volumes:
       - $heimdallconfig:/config
