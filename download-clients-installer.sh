@@ -45,11 +45,14 @@ if [ "$yesorno" = y ]; then
 	updatesys
 	echo "Update Successful."
 elif [ "$yesorno" = n ]; then
+	echo " "
 	echo "Skipping..."
 elif [ "$yesorno" = e ]; then
+	echo " "
 	echo "Goodbye!"
 	exit 1
 else
+	echo " "
 	echo "Not a valid answer. Exiting..."
 	exit 1
 fi
@@ -71,11 +74,14 @@ if [ "$yesorno" = y ]; then
 	echo "If an error occured, try running the docker-troubleshoot-fix.sh script."
 	echo " "
 elif [ "$yesorno" = n ]; then
+	echo " "
 	echo "Skipping..."
 elif [ "$yesorno" = e ]; then
+	echo " "
 	echo "Goodbye!"
 	exit 1
 else
+	echo " "
 	echo "Not a valid answer. Exiting..."
 	exit 1
 fi
