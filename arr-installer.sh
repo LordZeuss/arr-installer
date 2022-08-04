@@ -107,7 +107,7 @@ if [ "$yesorno" = y ]; then
    - /home/dockeras/portainer:/data
   environment:
    - PUID=1000
-   - PGID=150
+   - PGID=1000
    - TZ=US/Central
   image: portainer/portainer-ce" >> /home/$USER/raspi-docker/docker-compose.yml		#replace /home/$USER/raspi-docker/docker-compose.yml with the location of your docker-compose.yml file
 echo " " >>/home/$USER/raspi-docker/docker-compose.yml #replace this location with the location docker-compose.yml if needed.
@@ -134,7 +134,7 @@ elif [ "$yesorno" = f ]; then
    - /home/dockeras/portainer:/data
   environment:
    - PUID=1000
-   - PGID=150
+   - PGID=1000
    - TZ=US/Central
   image: portainer/portainer-ce" >> $answer
   			echo " " >> $answer
@@ -183,7 +183,7 @@ if [ "$yesorno" = y ]; then
    - /home/$USER/raspi-docker/downloads/tv:/tv
   environment:
    - PUID=1000
-   - PGID=150
+   - PGID=1000
    - TZ=US/Central
   image: linuxserver/sonarr" >> /home/$USER/raspi-docker/docker-compose.yml		#replace /home/$USER/raspi-docker/docker-compose.yml with the location of your docker-compose.yml file
 echo " " >>/home/$USER/raspi-docker/docker-compose.yml #replace this location with the location docker-compose.yml if needed.
@@ -217,7 +217,7 @@ elif [ "$yesorno" = f ]; then
    - $tv:/tv
   environment:
    - PUID=1000
-   - PGID=150
+   - PGID=1000
    - TZ=US/Central
   image: linuxserver/sonarr" >> $sonarranswer
   			echo " " >> $sonarranswer
@@ -254,8 +254,8 @@ if [ "$yesorno" = y ]; then
     image: lscr.io/linuxserver/radarr
     container_name: radarr
     environment:
-      - PUID=0
-      - PGID=0
+      - PUID=1000
+      - PGID=1000
       - TZ=UTC
       - UMASK=022 #optional
     volumes:
@@ -283,8 +283,8 @@ elif [ "$yesorno" = f ]; then
     image: lscr.io/linuxserver/radarr
     container_name: radarr
     environment:
-      - PUID=0
-      - PGID=0
+      - PUID=1000
+      - PGID=1000
       - TZ=UTC
       - UMASK=022 #optional
     volumes:
@@ -408,7 +408,7 @@ if [ "$yesorno" = y ]; then
    - /home/$USER/raspi-docker/jackett:/config
   environment:
    - PUID=1000
-   - PGID=150
+   - PGID=1000
    - TZ=US/Central
   image: linuxserver/jackett" >> /home/$USER/raspi-docker/docker-compose.yml 		#replace /home/$USER/raspi-docker/docker-compose.yml with the location of your docker-compose.yml file
 echo " " >>/home/$USER/raspi-docker/docker-compose.yml #replace this location with the location docker-compose.yml if needed.
@@ -434,7 +434,7 @@ elif [ "$yesorno" = f ]; then
    - $jackett:/config
   environment:
    - PUID=1000
-   - PGID=150
+   - PGID=1000
    - TZ=US/Central
   image: linuxserver/jackett" >> $jackettanswer
   			echo " " >> $jackettanswer
