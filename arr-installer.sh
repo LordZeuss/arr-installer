@@ -89,6 +89,8 @@ else
 fi
 
 ######################################################################
+sudo mkdir /home/$USER/raspi-docker/downloads
+sudo chmod 777 /home/$USER/raspi-docker/downloads
 
 #Install Portainer
 
