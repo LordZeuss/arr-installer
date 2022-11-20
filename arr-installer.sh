@@ -338,7 +338,7 @@ if [ "$yesorno" = y ]; then
       - PGID=1000
       - TZ=US/Central
     volumes:
-      - /path/to/data:/config
+      - /home/$USER/raspi-docker/prowlarr/config:/config
     ports:
       - 9696:9696
     restart: unless-stopped" >> /home/$USER/raspi-docker/docker-compose.yml 	#replace /home/$USER/raspi-docker/docker-compose.yml with the location of your docker-compose.yml file
