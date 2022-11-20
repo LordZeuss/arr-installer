@@ -10,6 +10,8 @@ Feel free to contact me to add more programs to the list!
 
 To install Docker and Mullvad VPN, check out my other repo, which this one coordinates with.
 
+**Update 11/19/22: Script(s) have been tested and are indeed still functional.**
+
 Recently added NZB Clients!
 
 ```
