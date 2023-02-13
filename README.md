@@ -42,6 +42,7 @@ I am not responsible for how you use these programs, I just wanted to write a sc
 * Readarr     -Like sonarr/radarr but for books
 * Bazarr      -Arr program that downloads subtitles
 * Lidarr      -Arr program for music
+* Overseerr   -Arr program to request for content (Connects to Plex/Sonarr/Radarr)
 * PodGrab     -Podcast downloader/player
 ## Extra Programs Included
 * AdGuard Home    -DNS Adblocker, similar to pi-hole
