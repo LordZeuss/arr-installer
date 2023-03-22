@@ -321,9 +321,327 @@ fi
 
 ######################################################
 
+#Readarr
+
+echo "Would you like to install Readarr? (y/n/f/e)"
+
+read -n1 yesorno
+
+if [ "$yesorno" = y ]; then
+	mkdir /home/$USER/raspi-docker/readarr
+	mkdir /home/$USER/raspi-docker/readarr/config
+	mkdir /home/$USER/raspi-docker/downloads/books
+	echo "readarr:
+    image: lscr.io/linuxserver/readarr:develop
+    container_name: readarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=US/Central
+    volumes:
+      - /home/$USER/raspi-docker/readarr/config:/config
+      - /path/to/books:/books #optional
+      - /home/$USER/raspi-docker/downloads/books:/downloads #optional
+    ports:
+      - 8787:8787
+    restart: unless-stopped" >> /home/$USER/raspi-docker/docker-compose.yml		#replace /home/$USER/raspi-docker/docker-compose.yml with the location of your docker-compose.yml file
+echo " " >>/home/$USER/raspi-docker/docker-compose.yml #replace this location with the location docker-compose.yml if needed.
+echo " "
+echo "Successfully Added"
+echo " "
+echo "Don't forget to add the path to your books and or download client!"
+echo " "
+elif [ "$yesorno" = n ]; then
+	echo " "
+	echo "Skipping..."
+elif [ "$yesorno" = f ]; then
+        echo " "
+        read -n1 -p "You have selected to change the location/volumes of the container. Would you like to continue? (y/n) " fix
+		if [ "$fix" = y ]; then
+     			echo " "
+     			read -p "Enter the location of the docker-compose.yml file: " readarranswer
+			read -p "Enter the new location for config: " rrconfig
+			read -p "Enter the new location of the downloads folder (Optional):  " rrdownloads
+			read -p "Enter the new location of where the Book files are(Optional): " books
+			sleep 1
+			echo "readarr:
+    image: lscr.io/linuxserver/readarr:develop
+    container_name: readarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=US/Central
+    volumes:
+      - $rrconfig:/config
+      - $rrdownloads:/downloads
+      - $books:/books
+    ports:
+      - 8787:8787
+    restart: unless-stopped" >> $readarranswer
+  			echo " " >> $readarranswer
+  			echo " "
+			echo "Done."
+			echo " "
+		elif [ "$fix" = n ]; then
+			echo " "
+			echo "Not adding Readarr to any file."
+			source arr-installer.sh
+			return
+		else
+			echo " "
+			echo "Goodbye!"
+			exit 1
+		fi
+elif [ "$yesorno" = e ]; then
+	echo " "
+	echo "Goodbye!"
+	exit 1
+else
+	echo " "
+	echo "Not a valid answer. Exiting..."
+	exit 1
+fi
+
+######################################################
+
+#Bazarr
+
+echo "Would you like to install Bazarr (Subtitles)? (y/n/f/e)"
+
+read -n1 yesorno
+
+if [ "$yesorno" = y ]; then
+	mkdir /home/$USER/raspi-docker/bazarr
+	mkdir /home/$USER/raspi-docker/bazarr/config
+	echo "bazarr:
+    image: lscr.io/linuxserver/bazarr
+    container_name: bazarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=US/Central
+    volumes:
+      - /home/$USER/raspi-docker/bazarr/config:/config
+      - /home/$USER/raspi-docker/downloads/movies:/movies #optional
+      - /home/$USER/raspi-docker/downloads/tv:/tv #optional
+    ports:
+      - 6767:6767
+    restart: unless-stopped" >> /home/$USER/raspi-docker/docker-compose.yml		#replace /home/$USER/raspi-docker/docker-compose.yml with the location of your docker-compose.yml file
+echo " " >>/home/$USER/raspi-docker/docker-compose.yml #replace this location with the location docker-compose.yml if needed.
+echo " "
+echo "Successfully Added"
+echo " "
+echo "Don't forget to add the path to your movies and tv shows!"
+echo " "
+elif [ "$yesorno" = n ]; then
+	echo " "
+	echo "Skipping..."
+elif [ "$yesorno" = f ]; then
+        echo " "
+        read -n1 -p "You have selected to change the location/volumes of the container. Would you like to continue? (y/n) " fix
+		if [ "$fix" = y ]; then
+      echo " "
+      read -p "Enter the location of the docker-compose.yml file: " bazarranswer
+			read -p "Enter the new location for config: " brconfig
+			read -p "Enter the new location of the Movies Folder (Optional):  " brmovies
+			read -p "Enter the new location of the TV Folder (Optional): " brtv
+			sleep 1
+			echo "bazarr:
+    image: lscr.io/linuxserver/bazarr
+    container_name: bazarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=US/Central
+    volumes:
+      - $brconfig:/config
+      - $brmovies:/movies
+      - $brtv:/tv
+    ports:
+      - 6767:6767
+    restart: unless-stopped" >> $bazarranswer
+  			echo " " >> $bazarranswer
+  			echo " "
+			echo "Done."
+			echo " "
+		elif [ "$fix" = n ]; then
+			echo " "
+			echo "Not adding Bazarr to any file."
+			source arr-installer.sh
+			return
+		else
+			echo " "
+			echo "Goodbye!"
+			exit 1
+		fi
+elif [ "$yesorno" = e ]; then
+	echo " "
+	echo "Goodbye!"
+	exit 1
+else
+	echo " "
+	echo "Not a valid answer. Exiting..."
+	exit 1
+fi
+
+######################################################
+
+#Overseerr
+
+echo "Would you like to install Overseerr? (y/n/f/e)"
+
+read -n1 yesorno
+
+if [ "$yesorno" = y ]; then
+	mkdir /home/$USER/raspi-docker/overseerr
+	mkdir /home/$USER/raspi-docker/overseerr/config
+	echo "overseerr:
+    image: sctx/overseerr:latest
+    container_name: overseerr
+    environment:
+      - LOG_LEVEL=debug
+      - TZ=US/Central
+    ports:
+      - 5055:5055
+    volumes:
+      - /home/$USER/raspi-docker/overseerr/config:/app/config
+    restart: unless-stopped" >> /home/$USER/raspi-docker/docker-compose.yml		#replace /home/$USER/raspi-docker/docker-compose.yml with the location of your docker-compose.yml file
+echo " " >>/home/$USER/raspi-docker/docker-compose.yml #replace this location with the location docker-compose.yml if needed.
+echo " "
+echo "Successfully Added"
+echo " "
+elif [ "$yesorno" = n ]; then
+	echo " "
+	echo "Skipping..."
+elif [ "$yesorno" = f ]; then
+        echo " "
+        read -n1 -p "You have selected to change the location/volumes of the container. Would you like to continue? (y/n) " fix
+		if [ "$fix" = y ]; then
+        echo " "
+    	read -p "Enter the location of the docker-compose.yml file: " overanswer
+			read -p "Enter the new location for config: " overconfig
+			sleep 1
+			echo "overseerr:
+    image: sctx/overseerr:latest
+    container_name: overseerr
+    environment:
+      - LOG_LEVEL=debug
+      - TZ=US/Central
+    ports:
+      - 5055:5055
+    volumes:
+      - $overconfig:/app/config
+    restart: unless-stopped" >> $overanswer
+  			echo " " >> $overanswer
+  			echo " "
+			echo "Done."
+			echo " "
+		elif [ "$fix" = n ]; then
+			echo " "
+			echo "Not adding Overseerr to any file."
+			source arr-installer.sh
+			return
+		else
+			echo " "
+			echo "Goodbye!"
+			exit 1
+		fi
+elif [ "$yesorno" = e ]; then
+	echo " "
+	echo "Goodbye!"
+	exit 1
+else
+	echo " "
+	echo "Not a valid answer. Exiting..."
+	exit 1
+fi
+
+######################################################
+
+#Lidarr
+
+echo "Would you like to install Lidarr (Music)? (y/n/f/e)"
+
+read -n1 yesorno
+
+if [ "$yesorno" = y ]; then
+	mkdir /home/$USER/raspi-docker/lidarr
+	mkdir /home/$USER/raspi-docker/downloads/music
+	mkdir /home/$USER/raspi-docker/lidarr/config
+	echo "lidarr:
+    image: lscr.io/linuxserver/lidarr
+    container_name: lidarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=US/Central
+    volumes:
+      - /home/$USER/raspi-docker/lidarr/config:/config
+      - /home/$USER/raspi-docker/downloads/music:/music #optional
+      - /home/$USER/raspi-docker/downloads:/downloads #optional
+    ports:
+      - 8686:8686
+    restart: unless-stopped" >> /home/$USER/raspi-docker/docker-compose.yml		#replace /home/$USER/raspi-docker/docker-compose.yml with the location of your docker-compose.yml file
+echo " " >>/home/$USER/raspi-docker/docker-compose.yml #replace this location with the location docker-compose.yml if needed.
+echo " "
+echo "Successfully Added"
+elif [ "$yesorno" = n ]; then
+	echo " "
+	echo "Skipping..."
+elif [ "$yesorno" = f ]; then
+        echo " "
+        read -n1 -p "You have selected to change the location/volumes of the container. Would you like to continue? (y/n) " fix
+		if [ "$fix" = y ]; then
+      echo " "
+      read -p "Enter the location of the docker-compose.yml file: " lidarranswer
+			echo " "
+			read -p "Enter the new location for config: " lidarrconfig
+			read -p "Enter the new location of the Music Folder (Optional):  " lrmusic
+			read -p "Enter the new location of the Downloads Folder (Optional): " lrdownloads
+			sleep 1
+			echo "lidarr:
+    image: lscr.io/linuxserver/lidarr
+    container_name: lidarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=US/Central
+    volumes:
+      - $lidarrconfig:/config
+      - $lrmusic:/music #optional
+      - $lrdownloads:/downloads #optional
+    ports:
+      - 8686:8686
+    restart: unless-stopped" >> $lidarranswer
+  			echo " " >> $lidarranswer
+  			echo " "
+			echo "Done."
+			echo " "
+		elif [ "$fix" = n ]; then
+			echo " "
+			echo "Not adding Lidarr to any file."
+			source arr-installer.sh
+			return
+		else
+			echo " "
+			echo "Goodbye!"
+			exit 1
+		fi
+elif [ "$yesorno" = e ]; then
+	echo " "
+	echo "Goodbye!"
+	exit 1
+else
+	echo " "
+	echo "Not a valid answer. Exiting..."
+	exit 1
+fi
+
+######################################################
+
 #Prowlarr
 
-echo "Would you like install Prowlarr? (y/n/f/e)"
+echo "Would you like install Prowlarr (Required for Sonarr/Radarr)? (y/n/f/e)"
 
 read -n1 yesorno
 
@@ -395,7 +713,7 @@ fi
 
 #Installing Jackett
 
-echo "Would you like to install Jackett (Required for Sonarr/Radarr)? (y/n/f/e)"
+echo "Would you like to install Jackett? (y/n/f/e)"
 
 read -n1 yesorno
 
@@ -763,323 +1081,6 @@ elif [ "$yesorno" = f ]; then
 		elif [ "$fix" = n ]; then
 			echo " "
 			echo "Not adding Adguard Home to any file."
-			source arr-installer.sh
-			return
-		else
-			echo " "
-			echo "Goodbye!"
-			exit 1
-		fi
-elif [ "$yesorno" = e ]; then
-	echo " "
-	echo "Goodbye!"
-	exit 1
-else
-	echo " "
-	echo "Not a valid answer. Exiting..."
-	exit 1
-fi
-
-
-#Readarr
-
-echo "Would you like to install Readarr? (y/n/f/e)"
-
-read -n1 yesorno
-
-if [ "$yesorno" = y ]; then
-	mkdir /home/$USER/raspi-docker/readarr
-	mkdir /home/$USER/raspi-docker/readarr/config
-	mkdir /home/$USER/raspi-docker/downloads/books
-	echo "readarr:
-    image: lscr.io/linuxserver/readarr:develop
-    container_name: readarr
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=US/Central
-    volumes:
-      - /home/$USER/raspi-docker/readarr/config:/config
-      - /path/to/books:/books #optional
-      - /home/$USER/raspi-docker/downloads/books:/downloads #optional
-    ports:
-      - 8787:8787
-    restart: unless-stopped" >> /home/$USER/raspi-docker/docker-compose.yml		#replace /home/$USER/raspi-docker/docker-compose.yml with the location of your docker-compose.yml file
-echo " " >>/home/$USER/raspi-docker/docker-compose.yml #replace this location with the location docker-compose.yml if needed.
-echo " "
-echo "Successfully Added"
-echo " "
-echo "Don't forget to add the path to your books and or download client!"
-echo " "
-elif [ "$yesorno" = n ]; then
-	echo " "
-	echo "Skipping..."
-elif [ "$yesorno" = f ]; then
-        echo " "
-        read -n1 -p "You have selected to change the location/volumes of the container. Would you like to continue? (y/n) " fix
-		if [ "$fix" = y ]; then
-     			echo " "
-     			read -p "Enter the location of the docker-compose.yml file: " readarranswer
-			read -p "Enter the new location for config: " rrconfig
-			read -p "Enter the new location of the downloads folder (Optional):  " rrdownloads
-			read -p "Enter the new location of where the Book files are(Optional): " books
-			sleep 1
-			echo "readarr:
-    image: lscr.io/linuxserver/readarr:develop
-    container_name: readarr
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=US/Central
-    volumes:
-      - $rrconfig:/config
-      - $rrdownloads:/downloads
-      - $books:/books
-    ports:
-      - 8787:8787
-    restart: unless-stopped" >> $readarranswer
-  			echo " " >> $readarranswer
-  			echo " "
-			echo "Done."
-			echo " "
-		elif [ "$fix" = n ]; then
-			echo " "
-			echo "Not adding Readarr to any file."
-			source arr-installer.sh
-			return
-		else
-			echo " "
-			echo "Goodbye!"
-			exit 1
-		fi
-elif [ "$yesorno" = e ]; then
-	echo " "
-	echo "Goodbye!"
-	exit 1
-else
-	echo " "
-	echo "Not a valid answer. Exiting..."
-	exit 1
-fi
-
-
-
-#Bazarr
-
-echo "Would you like to install Bazarr (Subtitles)? (y/n/f/e)"
-
-read -n1 yesorno
-
-if [ "$yesorno" = y ]; then
-	mkdir /home/$USER/raspi-docker/bazarr
-	mkdir /home/$USER/raspi-docker/bazarr/config
-	echo "bazarr:
-    image: lscr.io/linuxserver/bazarr
-    container_name: bazarr
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=US/Central
-    volumes:
-      - /home/$USER/raspi-docker/bazarr/config:/config
-      - /home/$USER/raspi-docker/downloads/movies:/movies #optional
-      - /home/$USER/raspi-docker/downloads/tv:/tv #optional
-    ports:
-      - 6767:6767
-    restart: unless-stopped" >> /home/$USER/raspi-docker/docker-compose.yml		#replace /home/$USER/raspi-docker/docker-compose.yml with the location of your docker-compose.yml file
-echo " " >>/home/$USER/raspi-docker/docker-compose.yml #replace this location with the location docker-compose.yml if needed.
-echo " "
-echo "Successfully Added"
-echo " "
-echo "Don't forget to add the path to your movies and tv shows!"
-echo " "
-elif [ "$yesorno" = n ]; then
-	echo " "
-	echo "Skipping..."
-elif [ "$yesorno" = f ]; then
-        echo " "
-        read -n1 -p "You have selected to change the location/volumes of the container. Would you like to continue? (y/n) " fix
-		if [ "$fix" = y ]; then
-      echo " "
-      read -p "Enter the location of the docker-compose.yml file: " bazarranswer
-			read -p "Enter the new location for config: " brconfig
-			read -p "Enter the new location of the Movies Folder (Optional):  " brmovies
-			read -p "Enter the new location of the TV Folder (Optional): " brtv
-			sleep 1
-			echo "bazarr:
-    image: lscr.io/linuxserver/bazarr
-    container_name: bazarr
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=US/Central
-    volumes:
-      - $brconfig:/config
-      - $brmovies:/movies
-      - $brtv:/tv
-    ports:
-      - 6767:6767
-    restart: unless-stopped" >> $bazarranswer
-  			echo " " >> $bazarranswer
-  			echo " "
-			echo "Done."
-			echo " "
-		elif [ "$fix" = n ]; then
-			echo " "
-			echo "Not adding Bazarr to any file."
-			source arr-installer.sh
-			return
-		else
-			echo " "
-			echo "Goodbye!"
-			exit 1
-		fi
-elif [ "$yesorno" = e ]; then
-	echo " "
-	echo "Goodbye!"
-	exit 1
-else
-	echo " "
-	echo "Not a valid answer. Exiting..."
-	exit 1
-fi
-
-
-
-#Overseerr
-
-echo "Would you like to install Overseerr? (y/n/f/e)"
-
-read -n1 yesorno
-
-if [ "$yesorno" = y ]; then
-	mkdir /home/$USER/raspi-docker/overseerr
-	mkdir /home/$USER/raspi-docker/overseerr/config
-	echo "overseerr:
-    image: sctx/overseerr:latest
-    container_name: overseerr
-    environment:
-      - LOG_LEVEL=debug
-      - TZ=US/Central
-    ports:
-      - 5055:5055
-    volumes:
-      - /home/$USER/raspi-docker/overseerr/config:/app/config
-    restart: unless-stopped" >> /home/$USER/raspi-docker/docker-compose.yml		#replace /home/$USER/raspi-docker/docker-compose.yml with the location of your docker-compose.yml file
-echo " " >>/home/$USER/raspi-docker/docker-compose.yml #replace this location with the location docker-compose.yml if needed.
-echo " "
-echo "Successfully Added"
-echo " "
-elif [ "$yesorno" = n ]; then
-	echo " "
-	echo "Skipping..."
-elif [ "$yesorno" = f ]; then
-        echo " "
-        read -n1 -p "You have selected to change the location/volumes of the container. Would you like to continue? (y/n) " fix
-		if [ "$fix" = y ]; then
-        echo " "
-    	read -p "Enter the location of the docker-compose.yml file: " overanswer
-			read -p "Enter the new location for config: " overconfig
-			sleep 1
-			echo "overseerr:
-    image: sctx/overseerr:latest
-    container_name: overseerr
-    environment:
-      - LOG_LEVEL=debug
-      - TZ=US/Central
-    ports:
-      - 5055:5055
-    volumes:
-      - $overconfig:/app/config
-    restart: unless-stopped" >> $overanswer
-  			echo " " >> $overanswer
-  			echo " "
-			echo "Done."
-			echo " "
-		elif [ "$fix" = n ]; then
-			echo " "
-			echo "Not adding Overseerr to any file."
-			source arr-installer.sh
-			return
-		else
-			echo " "
-			echo "Goodbye!"
-			exit 1
-		fi
-elif [ "$yesorno" = e ]; then
-	echo " "
-	echo "Goodbye!"
-	exit 1
-else
-	echo " "
-	echo "Not a valid answer. Exiting..."
-	exit 1
-fi
-
-
-
-#Lidarr
-
-echo "Would you like to install Lidarr (Music)? (y/n/f/e)"
-
-read -n1 yesorno
-
-if [ "$yesorno" = y ]; then
-	mkdir /home/$USER/raspi-docker/lidarr
-	mkdir /home/$USER/raspi-docker/downloads/music
-	mkdir /home/$USER/raspi-docker/lidarr/config
-	echo "lidarr:
-    image: lscr.io/linuxserver/lidarr
-    container_name: lidarr
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=US/Central
-    volumes:
-      - /home/$USER/raspi-docker/lidarr/config:/config
-      - /home/$USER/raspi-docker/downloads/music:/music #optional
-      - /home/$USER/raspi-docker/downloads:/downloads #optional
-    ports:
-      - 8686:8686
-    restart: unless-stopped" >> /home/$USER/raspi-docker/docker-compose.yml		#replace /home/$USER/raspi-docker/docker-compose.yml with the location of your docker-compose.yml file
-echo " " >>/home/$USER/raspi-docker/docker-compose.yml #replace this location with the location docker-compose.yml if needed.
-echo " "
-echo "Successfully Added"
-elif [ "$yesorno" = n ]; then
-	echo " "
-	echo "Skipping..."
-elif [ "$yesorno" = f ]; then
-        echo " "
-        read -n1 -p "You have selected to change the location/volumes of the container. Would you like to continue? (y/n) " fix
-		if [ "$fix" = y ]; then
-      echo " "
-      read -p "Enter the location of the docker-compose.yml file: " lidarranswer
-			echo " "
-			read -p "Enter the new location for config: " lidarrconfig
-			read -p "Enter the new location of the Music Folder (Optional):  " lrmusic
-			read -p "Enter the new location of the Downloads Folder (Optional): " lrdownloads
-			sleep 1
-			echo "lidarr:
-    image: lscr.io/linuxserver/lidarr
-    container_name: lidarr
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=US/Central
-    volumes:
-      - $lidarrconfig:/config
-      - $lrmusic:/music #optional
-      - $lrdownloads:/downloads #optional
-    ports:
-      - 8686:8686
-    restart: unless-stopped" >> $lidarranswer
-  			echo " " >> $lidarranswer
-  			echo " "
-			echo "Done."
-			echo " "
-		elif [ "$fix" = n ]; then
-			echo " "
-			echo "Not adding Lidarr to any file."
 			source arr-installer.sh
 			return
 		else
